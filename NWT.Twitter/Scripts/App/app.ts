@@ -15,18 +15,7 @@ import {Home} from  './Components/home';
 
 @Metadata.View({
     directives: [RouterOutlet, RouterLink],
-    template: `
-    < nav >
-        <ul>
-            <li><a router-link="start" > Start < /a></li >
-            <li><a router-link="about" > About < /a></li >
-            <li><a router-link="contact" > Contact < /a></li >
-        </ul>
-    < /nav>
-    <main>
-      <router-outlet></router-outlet>
-    </main>
-  `
+    templateUrl: '/HtmlTemplates/App.html' 
 })
 
 class App {
