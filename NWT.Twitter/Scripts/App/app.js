@@ -20,7 +20,7 @@ var App = (function () {
         ]),
         Metadata.View({
             directives: [router_1.RouterOutlet, router_1.RouterLink],
-            template: "\n    < nav >\n        <ul>\n            <li><a router-link=\"start\" > Start < /a></li >\n            <li><a router-link=\"about\" > About < /a></li >\n            <li><a router-link=\"contact\" > Contact < /a></li >\n        </ul>\n    < /nav>\n    <main>\n      <router-outlet></router-outlet>\n    </main>\n  "
+            templateUrl: '/HtmlTemplates/App.html'
         })
     ], App);
     return App;
