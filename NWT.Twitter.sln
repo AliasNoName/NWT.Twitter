@@ -1,11 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NWT.Twitter", "NWT.Twitter\NWT.Twitter.csproj", "{9C2F1983-501A-49FE-9CC8-71E08EB6C11B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NWT.Twitter.Data", "NWT.Twitter.Data\NWT.Twitter.Data.csproj", "{206EFA96-FDFF-4F15-8532-3C38309EA820}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL Scripts", "SQL Scripts", "{1A3B3EAA-E7CB-401F-9162-CABD57BC3FC4}"
+	ProjectSection(SolutionItems) = preProject
+		000-database-init.sql = 000-database-init.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

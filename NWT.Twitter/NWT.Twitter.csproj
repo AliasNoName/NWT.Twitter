@@ -198,6 +198,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="HtmlTemplates\App.html" />
     <Content Include="Scripts\node_modules\angular2\animate.js" />
     <Content Include="Scripts\node_modules\angular2\animate\testing.js" />
     <Content Include="Scripts\node_modules\angular2\bootstrap.js" />

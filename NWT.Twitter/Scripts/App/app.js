@@ -6,23 +6,24 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var Metadata = require("../node_modules/angular2/src/core/metadata");
 var Component = Metadata.Component;
+var browser_1 = require('../node_modules/angular2/platform/browser');
 var router_1 = require('../node_modules/angular2/router');
 var home_1 = require('./Components/home');
-var App = (function () {
-    function App() {
+var Twitter = (function () {
+    function Twitter() {
     }
-    App = __decorate([
+    Twitter = __decorate([
         Component({
-            selector: 'app'
+            selector: 'twitter-app',
+            directives: [router_1.RouterOutlet, router_1.RouterLink],
+            templateUrl: "./HtmlTemplates/App.html"
         }),
         router_1.RouteConfig([
-            { path: '/home', component: home_1.Home, as: 'home' }
-        ]),
-        Metadata.View({
-            directives: [router_1.RouterOutlet, router_1.RouterLink],
-            templateUrl: '/HtmlTemplates/App.html'
-        })
-    ], App);
-    return App;
+            { path: '/home', component: home_1.Home, name: 'home' }
+        ])
+    ], Twitter);
+    return Twitter;
 })();
+exports.Twitter = Twitter;
+browser_1.bootstrap(Twitter, [router_1.ROUTER_PROVIDERS]);
 //# sourceMappingURL=app.js.map
