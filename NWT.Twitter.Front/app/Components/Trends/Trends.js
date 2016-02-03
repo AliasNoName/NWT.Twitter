@@ -1,4 +1,4 @@
-System.register(['angular2/platform/browser', 'angular2/core'], function(exports_1) {
+System.register(["angular2/core", "angular2/common"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,31 +8,35 @@ System.register(['angular2/platform/browser', 'angular2/core'], function(exports
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var browser_1, core_1;
-    var App;
+    var core_1, common_1;
+    var Trends;
     return {
         setters:[
-            function (browser_1_1) {
-                browser_1 = browser_1_1;
-            },
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (common_1_1) {
+                common_1 = common_1_1;
             }],
         execute: function() {
-            App = (function () {
-                function App() {
+            Trends = (function () {
+                function Trends() {
                 }
-                App = __decorate([
+                Trends = __decorate([
                     core_1.Component({
-                        selector: 'twitter-app',
-                        templateUrl: './HtmlTemplates/App.html'
+                        selector: "trends",
+                        inputs: ["hashtags"]
+                    }),
+                    core_1.View({
+                        directives: [common_1.CORE_DIRECTIVES],
+                        template: "<div class=\"panel panel-default hidden-xs \">\n    <label id=\"trends-label\">Trends</label>\n    <ul id=\"trends-list\" *ng-for=\"#hashtag of hashtags\">\n                <li>{{hashtag.data}}</li>\n    </ul>\n    </div>"
                     }), 
                     __metadata('design:paramtypes', [])
-                ], App);
-                return App;
+                ], Trends);
+                return Trends;
             })();
-            browser_1.bootstrap(App);
+            exports_1("Trends", Trends);
         }
     }
 });
-//# sourceMappingURL=app.js.map
+//# sourceMappingURL=Trends.js.map
