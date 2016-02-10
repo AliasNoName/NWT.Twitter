@@ -22,7 +22,7 @@ System.register(["angular2/core"], function(exports_1) {
                     this.searchData = new core_1.EventEmitter();
                 }
                 Search.prototype.updateSearchKey = function (input) {
-                    this.searchKey = input.value;
+                    this.searchKey = input.value.trim();
                     this.searchData.next(this.searchKey);
                 };
                 Search = __decorate([
@@ -31,7 +31,7 @@ System.register(["angular2/core"], function(exports_1) {
                         outputs: ["searchData"]
                     }),
                     core_1.View({
-                        template: "\n    <div class=\"input-group\">\n         <input type=\"text\" class=\"form-control\" placeholder=\"Search for...\" #search (keyup)=\"updateSearchKey(search)\"/>\n         <span class=\"input-group-btn\">\n            <button class=\"btn btn-default\" type=\"button\"><span class=\"glyphicon glyphicon-search\" /></button>\n         </span>\n    </div>\n"
+                        template: "\n    <div class=\"input-group\">\n         <input type=\"text\" class=\"form-control\" placeholder=\"Search for...\" #input (keyup)=\"updateSearchKey(input)\"/>\n         <span class=\"input-group-btn\">\n            <button class=\"btn btn-default\" type=\"button\"><span class=\"glyphicon glyphicon-search\"></span>.</button>\n         </span>\n    </div>\n  \n"
                     }), 
                     __metadata('design:paramtypes', [])
                 ], Search);

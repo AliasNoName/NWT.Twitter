@@ -45,10 +45,8 @@ System.register(["angular2/core"], function(exports_1) {
                 NewTweet = __decorate([
                     core_1.Component({
                         selector: "new-tweet",
-                        outputs: ["publish"]
-                    }),
-                    core_1.View({
-                        template: "<div class=\"well new-tweet-window\">\n            <form class=\"form-horizontal\" role=\"form\">\n                <div class=\"form-group\" style=\"padding:14px;\">\n                    <img src=\"/Content/Users/User1.png\" class=\"user-image img-from-new-tweet-window\" alt=\"user picture\" />\n                    <input class=\"form-control input-from-new-tweet-window\" placeholder=\"What's happening?\" #input (keyup)=\"newTweetUpdate(input)\">\n                </div>\n                <button class=\"btn btn-success pull-right\" type=\"button\" (click)=\"onPublish(input)\">Post</button>\n                <span class=\"pull-right number-from-new-tweet-window\">{{numberOfSymbols}}</span>\n                <ul class=\"list-inline new-tweet-list\">\n                    <li><a href=\"#\"><i class=\"glyphicon glyphicon-facetime-video\"></i>  Media</a></li>\n                    <li><a href=\"#\"><i class=\"glyphicon glyphicon-map-marker\"></i>  Location</a></li>\n                    <li><a href=\"#\"><i class=\"glyphicon glyphicon-adjust\"></i> Poll</a></li>\n                </ul>\n            </form>\n        </div>\n                  "
+                        outputs: ["publish"],
+                        templateUrl: "./app/Components/NewTweet/NewTweet.html"
                     }), 
                     __metadata('design:paramtypes', [])
                 ], NewTweet);

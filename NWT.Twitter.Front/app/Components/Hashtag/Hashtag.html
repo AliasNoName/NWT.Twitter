@@ -1,0 +1,15 @@
+     <div class="panel panel-default" id="hashtag-panel">
+        <label>{{currentHashtag.data}}</label><br/>
+     </div>
+
+<main>
+    <div id="profile-data-div">
+        <tweets-list [tweets]="twetsWithHashtag|contains:searchKey" [currentUser]="currentUser" (putFavourited)="onPutFavourited($event)"  (remove-favourited)="onRemoveFavourited($event)">Loading User's Tweets..</tweets-list>
+    </div>
+
+    <aside id="user-panel-container" class="hidden-xs trends">
+        <trends [hashtags]="hashtags" >Loading list..</trends>
+        <search (searchData)="onSearchKeyUpdate($event)">Loading search bar..</search>
+        <br/>
+    </aside>
+</main>

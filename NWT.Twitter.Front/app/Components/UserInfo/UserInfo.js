@@ -22,10 +22,8 @@ System.register(["angular2/core"], function(exports_1) {
                 UserInfo = __decorate([
                     core_1.Component({
                         selector: "user-info",
-                        inputs: ["user"]
-                    }),
-                    core_1.View({
-                        template: "\n        <div class=\"panel panel-default user-panel\">\n    <img src={{user.imageUrl}} id=\"user-panel-user-image\" alt=\"user picture\" />\n    <a class=\"hidden-xs\" src= \"#\" > <label id=\"user-panel-user-name\">{{user.getFullName()}}</label><br /></a>\n    <a class=\"hidden-xs\" src=\"#\"> <span id=\"user-panel-nickname\">@{{user.nickname}}</span><br /></a>\n    <ul class=\"hidden-xs nav navbar-nav\">\n        <li class=\"user-container-info\">\n            TWEETS <br />\n            <label>{{user.numberTweets()}}</label>\n        </li>\n        <li class=\"user-container-info\">\n            FOLLOWING<br />\n            <label>{{user.numberFollowing()}}</label>\n        </li>\n    </ul>\n</div>\n"
+                        inputs: ["user"],
+                        templateUrl: "./app/Components/UserInfo/UserInfo.html"
                     }), 
                     __metadata('design:paramtypes', [])
                 ], UserInfo);

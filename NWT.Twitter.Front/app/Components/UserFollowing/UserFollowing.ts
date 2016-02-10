@@ -10,31 +10,14 @@ import {User as UserModel} from "../../Model/User"
 
 @View({
     directives: [CORE_DIRECTIVES],
-    template: `<div class="panel panel-default users">
-            <img src={{user.imageUrl}} class="users-image" alt="user picture" />
-            <a src="#"> <label class="users-name">{{user.getFullName()}}</label><br/></a>
-            <a src="#"> <span class="users-nickname">@{{user.nickname}}</span><br/></a>
-            <button *ng-if="isFollowing" class="btn pull-right btn-warning" (click)="onUnFollow()">Unfollow</button>
-            <button *ng-if="!isFollowing" class="btn pull-right btn-success"(click)="onFollow()">Follow</button>
-            <ul class="nav navbar-nav">
-                <li class="users-info">
-                    TWEETS <br/>
-                    <label>{{user.numberTweets()}}</label>
-                </li>
-                <li class="users-info">
-                    FOLLOWING<br/>
-                    <label>{{user.numberFollowing()}}</label>
-                </li>
-            </ul>
-        </div>
-                  `
+    templateUrl: "./app/Components/UserFollowing/UserFollowing.html"
 })
 
 export class UserFollowing {
     public isFollowing: boolean;
     public user: UserModel;
-    public followed: EventEmitter;
-    public unfollowed: EventEmitter;
+    public followed: EventEmitter<any>;
+    public unfollowed: EventEmitter<any>;
 
     constructor() {
         this.followed = new EventEmitter();

@@ -41,7 +41,7 @@ System.register(["angular2/core", "angular2/common", "../UserFollowing/UserFollo
                     }),
                     core_1.View({
                         directives: [common_1.CORE_DIRECTIVES, UserFollowing_1.UserFollowing],
-                        template: "\n        <div>\n        <h3 *ng-if=\"isFollowing\">Users you followed</h3>\n        <h3 *ng-if=\"!isFollowing\">Other users</h3>\n        <br/>\n        <div *ng-for=\"#user of users\">\n                <user-following [is-following] = \"isFollowing\" [user]=\"user\" (followed)=\"onFollow($event)\" (unfollowed)=\"onUnFollow($event)\"></user-following>\n        </div>\n        </div>\n    "
+                        templateUrl: "./app/Components/UsersFollowingList/UsersFollowingList.html"
                     }), 
                     __metadata('design:paramtypes', [])
                 ], UsersFollowingList);

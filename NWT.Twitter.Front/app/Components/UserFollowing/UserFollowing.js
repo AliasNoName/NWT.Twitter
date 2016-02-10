@@ -38,7 +38,7 @@ System.register(["angular2/core", "angular2/common"], function(exports_1) {
                     }),
                     core_1.View({
                         directives: [common_1.CORE_DIRECTIVES],
-                        template: "<div class=\"panel panel-default users\">\n            <img src={{user.imageUrl}} class=\"users-image\" alt=\"user picture\" />\n            <a src=\"#\"> <label class=\"users-name\">{{user.getFullName()}}</label><br/></a>\n            <a src=\"#\"> <span class=\"users-nickname\">@{{user.nickname}}</span><br/></a>\n            <button *ng-if=\"isFollowing\" class=\"btn pull-right btn-warning\" (click)=\"onUnFollow()\">Unfollow</button>\n            <button *ng-if=\"!isFollowing\" class=\"btn pull-right btn-success\"(click)=\"onFollow()\">Follow</button>\n            <ul class=\"nav navbar-nav\">\n                <li class=\"users-info\">\n                    TWEETS <br/>\n                    <label>{{user.numberTweets()}}</label>\n                </li>\n                <li class=\"users-info\">\n                    FOLLOWING<br/>\n                    <label>{{user.numberFollowing()}}</label>\n                </li>\n            </ul>\n        </div>\n                  "
+                        templateUrl: "./app/Components/UserFollowing/UserFollowing.html"
                     }), 
                     __metadata('design:paramtypes', [])
                 ], UserFollowing);

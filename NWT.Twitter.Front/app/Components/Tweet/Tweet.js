@@ -36,11 +36,9 @@ System.register(["angular2/core", "angular2/common"], function(exports_1) {
                     core_1.Component({
                         selector: "tweet",
                         inputs: ["tweet", "favourited"],
-                        outputs: ["putFavourited", "removeFavourited"]
-                    }),
-                    core_1.View({
+                        outputs: ["putFavourited", "removeFavourited"],
                         directives: [common_1.CORE_DIRECTIVES],
-                        template: "<div class=\"panel panel-default tweet\">\n                <div class=\"panel-body\">\n                <img src={{tweet.author.imageUrl}} class=\"tweet-user-image\" alt=\"user picture\" />\n                <div class=\"tweet-data\">\n                    <a src=\"#\"> <label>{{tweet.author.getFullName()}}</label></a>  @{{tweet.author.nickname}} - {{tweet.publishTime|date}}\n                    <div class=\"tweet-text\">{{tweet.data}}\n                       <span *ng-for=\"#hashtag of tweet.hashtags\">\n                        <a src=\"#\">   {{hashtag.data}}</a></div>\n                       </span>\n                    <ul class=\"list-inline\">\n                        <li><a href=\"#\"><i class=\"glyphicon glyphicon-arrow-left\"></i>Reply   </a></li>\n                        <li><a href=\"#\"><i class=\"glyphicon glyphicon-repeat\"></i>Retweet   </a></li>\n                        <li><a href=\"#!\" *ng-if=\"!favourited\" (click)=\"onPutFavourited()\"><i class=\"glyphicon glyphicon-star-empty\"></i>Favourite   </a>\n                            <a href=\"#!\" *ng-if=\"favourited\" (click)=\"onRemoveFavourited()\"><i class=\"glyphicon glyphicon-star\"></i>Favourited   </a></li>  \n                    </ul>\n                </div>\n            </div>\n        </div>\n                  "
+                        templateUrl: "./app/Components/Tweet/Tweet.html"
                     }), 
                     __metadata('design:paramtypes', [])
                 ], Tweet);

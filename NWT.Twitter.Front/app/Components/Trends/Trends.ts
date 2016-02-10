@@ -12,7 +12,7 @@ import {Hashtag as HashtagModel} from "../../Model/Hashtag"
     template:
     `<div class="panel panel-default hidden-xs ">
     <label id="trends-label">Trends</label>
-    <ul id="trends-list" *ng-for="#hashtag of hashtags">
+    <ul id="trends-list" *ngFor="#hashtag of hashtags">
                 <li>{{hashtag.data}}</li>
     </ul>
     </div>`

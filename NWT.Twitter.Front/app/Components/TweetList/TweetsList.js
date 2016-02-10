@@ -46,7 +46,7 @@ System.register(["angular2/core", "angular2/common", "../Tweet/Tweet"], function
                     }),
                     core_1.View({
                         directives: [common_1.CORE_DIRECTIVES, Tweet_1.Tweet],
-                        template: "\n<div>\n        <div *ng-for=\"#tweet of tweets\">\n                <tweet [tweet]=\"tweet\" [favourited]=\"checkIfFavourited(tweet)\" (put-favourited)=\"onPutFavourited($event)\"  (remove-favourited)=\"onRemoveFavourited($event)\"></tweet>\n        </div>\n</div>\n    "
+                        template: "\n<div>\n        <div *ngFor=\"#tweet of tweets\">\n                <tweet [tweet]=\"tweet\" [favourited]=\"checkIfFavourited(tweet)\" (putFavourited)=\"onPutFavourited($event)\"  (removeFavourited)=\"onRemoveFavourited($event)\"></tweet>\n        </div>\n</div>\n    "
                     }), 
                     __metadata('design:paramtypes', [])
                 ], TweetsList);

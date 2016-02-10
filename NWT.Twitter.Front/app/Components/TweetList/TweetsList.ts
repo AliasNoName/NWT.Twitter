@@ -16,8 +16,8 @@ import {Tweet} from "../Tweet/Tweet"
     template:
     `
 <div>
-        <div *ng-for="#tweet of tweets">
-                <tweet [tweet]="tweet" [favourited]="checkIfFavourited(tweet)" (put-favourited)="onPutFavourited($event)"  (remove-favourited)="onRemoveFavourited($event)"></tweet>
+        <div *ngFor="#tweet of tweets">
+                <tweet [tweet]="tweet" [favourited]="checkIfFavourited(tweet)" (putFavourited)="onPutFavourited($event)"  (removeFavourited)="onRemoveFavourited($event)"></tweet>
         </div>
 </div>
     `
@@ -26,8 +26,8 @@ export class TweetsList {
 
     public tweets: TweetModel[];
     public currentUser: UserModel;
-    public putFavourited: EventEmitter;
-    public removeFavourited: EventEmitter;
+    public putFavourited: EventEmitter<any>;
+    public removeFavourited: EventEmitter<any>;
 
     constructor() {
         this.putFavourited = new EventEmitter();

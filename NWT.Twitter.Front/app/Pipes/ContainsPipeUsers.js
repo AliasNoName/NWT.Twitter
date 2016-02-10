@@ -1,4 +1,4 @@
-System.register(["angular2/angular2"], function(exports_1) {
+System.register(['angular2/core'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,19 +8,19 @@ System.register(["angular2/angular2"], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var angular2_1;
+    var core_1;
     var ContainsPipeUsers;
     return {
         setters:[
-            function (angular2_1_1) {
-                angular2_1 = angular2_1_1;
+            function (core_1_1) {
+                core_1 = core_1_1;
             }],
         execute: function() {
             ContainsPipeUsers = (function () {
                 function ContainsPipeUsers() {
                 }
-                ContainsPipeUsers.prototype.transform = function (items, _a) {
-                    var keyword = _a[0];
+                ContainsPipeUsers.prototype.transform = function (items, args) {
+                    var keyword = args[0];
                     if (keyword == null || keyword.trim() == "") {
                         return items;
                     }
@@ -29,7 +29,7 @@ System.register(["angular2/angular2"], function(exports_1) {
                         || item.nickname.toLowerCase().indexOf(keyword) != -1; });
                 };
                 ContainsPipeUsers = __decorate([
-                    angular2_1.Pipe({
+                    core_1.Pipe({
                         name: "containsuser",
                         pure: false
                     }), 

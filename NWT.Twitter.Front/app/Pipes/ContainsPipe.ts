@@ -1,4 +1,4 @@
-﻿import {Pipe} from "angular2/angular2"
+﻿import {Pipe} from "angular2/core"
 import {Tweet as TweetModel} from "./../Model/Tweet"
 import {Hashtag as HashtagModel} from "./../Model/Hashtag"
 

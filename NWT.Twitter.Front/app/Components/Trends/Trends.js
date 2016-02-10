@@ -29,7 +29,7 @@ System.register(["angular2/core", "angular2/common"], function(exports_1) {
                     }),
                     core_1.View({
                         directives: [common_1.CORE_DIRECTIVES],
-                        template: "<div class=\"panel panel-default hidden-xs \">\n    <label id=\"trends-label\">Trends</label>\n    <ul id=\"trends-list\" *ng-for=\"#hashtag of hashtags\">\n                <li>{{hashtag.data}}</li>\n    </ul>\n    </div>"
+                        template: "<div class=\"panel panel-default hidden-xs \">\n    <label id=\"trends-label\">Trends</label>\n    <ul id=\"trends-list\" *ngFor=\"#hashtag of hashtags\">\n                <li>{{hashtag.data}}</li>\n    </ul>\n    </div>"
                     }), 
                     __metadata('design:paramtypes', [])
                 ], Trends);

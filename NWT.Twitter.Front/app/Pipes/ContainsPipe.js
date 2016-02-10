@@ -1,4 +1,4 @@
-System.register(["angular2/angular2"], function(exports_1) {
+System.register(["angular2/core"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,12 +8,12 @@ System.register(["angular2/angular2"], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var angular2_1;
+    var core_1;
     var ContainsPipe;
     return {
         setters:[
-            function (angular2_1_1) {
-                angular2_1 = angular2_1_1;
+            function (core_1_1) {
+                core_1 = core_1_1;
             }],
         execute: function() {
             ContainsPipe = (function () {
@@ -44,7 +44,7 @@ System.register(["angular2/angular2"], function(exports_1) {
                         || _this.checkHashtags(item, keyword); });
                 };
                 ContainsPipe = __decorate([
-                    angular2_1.Pipe({
+                    core_1.Pipe({
                         name: "contains",
                         pure: false
                     }), 

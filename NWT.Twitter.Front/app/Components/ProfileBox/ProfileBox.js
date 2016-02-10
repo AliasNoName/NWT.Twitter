@@ -25,7 +25,7 @@ System.register(["angular2/core"], function(exports_1) {
                         inputs: ["user"]
                     }),
                     core_1.View({
-                        template: "\n        <div class=\"panel panel-default\" id=\"profile-panel\">\n    <img src={{user.imageUrl}} id=\"profile-user-image\" alt=\"user picture\" />\n    <a src=\"#\"> <label id=\"profile-user-name\">{{user.getFullName()}}</label><br/></a>\n    <a src=\"#\"> <span id=\"profile-nickname\">@{{user.nickname}}</span><br/></a>\n    <ul class=\"hidden-xs nav navbar-nav\">\n        <li class=\"profile-info\">\n            TWEETS <br/>\n            <label>{{user.numberTweets()}}</label>\n        </li>\n        <li class=\"profile-info\">\n            FOLLOWING<br/>\n            <label>{{user.numberFollowing()}}</label>\n        </li>\n    </ul>\n    <button class=\"btn button pull-right edit-profile\">Edit Profile</button>\n</div>\n"
+                        templateUrl: "./app/Components/ProfileBox/ProfileBox.html"
                     }), 
                     __metadata('design:paramtypes', [])
                 ], ProfileBox);

@@ -21,7 +21,7 @@ import {Component, View, EventEmitter} from "angular2/core"
 export class EditProfileForm {
     public inValue: string;
     public inLabel: string;
-    public outValue: EventEmitter;
+    public outValue: EventEmitter<any>;
     public typeOfData: string;
 
     constructor() {

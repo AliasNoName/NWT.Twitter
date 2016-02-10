@@ -1,0 +1,16 @@
+<main>
+    <aside id="user-panel-container">
+        <user-info [user]="users[0]">Loading user info..</user-info>
+        <search (searchData)="onSearchKeyUpdate($event)">Loading search bar..</search>
+        <br/>
+        <trends [hashtags]="hashtags">Loading list..</trends>
+    </aside>
+
+    <div id="main-content-container" class="panel">
+        <h3>Tweets you favourited</h3><br/>
+        <tweets-list [tweets]="currentUser.favourites|contains:searchKey" [currentUser]="currentUser" (removeFavourited)="onRemoveFavourited($event)">Loading User's Tweets..</tweets-list>
+        <br/><hr/><br/>
+        <h3>You may also like</h3><br/>
+        <tweets-list [tweets]="notFavourited|contains:searchKey" [currentUser]="currentUser" (putFavourited)="onPutFavourited($event)" >Loading User's Tweets..</tweets-list>
+    </div>
+</main>
