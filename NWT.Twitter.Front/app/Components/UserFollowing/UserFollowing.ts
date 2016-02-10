@@ -1,5 +1,6 @@
 import {Component, View, EventEmitter} from "angular2/core"
 import {CORE_DIRECTIVES} from "angular2/common"
+import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 import {User as UserModel} from "../../Model/User"
 
 @Component({
@@ -9,7 +10,7 @@ import {User as UserModel} from "../../Model/User"
 })
 
 @View({
-    directives: [CORE_DIRECTIVES],
+    directives: [CORE_DIRECTIVES, ROUTER_DIRECTIVES],
     templateUrl: "./app/Components/UserFollowing/UserFollowing.html"
 })
 

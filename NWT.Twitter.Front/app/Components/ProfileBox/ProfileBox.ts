@@ -12,11 +12,6 @@ import {EditProfile} from  '../EditProfile/EditProfile';
     templateUrl: "./app/Components/ProfileBox/ProfileBox.html"
 })
 
-@RouteConfig([
-    { path: '/profile', component: Profile, name: 'Profile' },
-    { path: '/editprofile', component: EditProfile, name: 'EditProfile' }
-])
-
 export class ProfileBox {
     public user: UserModel;
 }

@@ -2,7 +2,7 @@
                 <div class="panel-body">
                 <img src={{tweet.author.imageUrl}} class="tweet-user-image" alt="user picture" />
                 <div class="tweet-data">
-                    <a> <label>{{tweet.author.getFullName()}}</label></a>  @{{tweet.author.nickname}} - {{tweet.publishTime|date}}
+                    <a [routerLink]="['Following']"> <label>{{tweet.author.getFullName()}}</label></a>  @{{tweet.author.nickname}} - {{tweet.publishTime|date}}
                     <div class="tweet-text">{{tweet.data}}
                        <span *ngFor="#hashtag of tweet.hashtags">
                         <a [routerLink]="['Hashtag', {data: hashtag.data}]">   {{hashtag.data}}</a>
