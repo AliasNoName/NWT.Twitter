@@ -1,4 +1,4 @@
-System.register(['angular2/core', "../../Model/Hashtag", "../../Model/Tweet", "../../Model/User", "../TweetList/TweetsList", "../Trends/Trends", "../UserInfo/UserInfo", "../ProfileBox/ProfileBox", "../Search/Search", "../../Pipes/ContainsPipe"], function(exports_1) {
+System.register(['angular2/core', "../../Model/Hashtag", "../../Model/Tweet", "../../Model/User", "../../Model/Comment", "../TweetList/TweetsList", "../Trends/Trends", "../UserInfo/UserInfo", "../ProfileBox/ProfileBox", "../Search/Search", "../../Pipes/ContainsPipe"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', "../../Model/Hashtag", "../../Model/Tweet", ".
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, Hashtag_1, Tweet_1, User_1, TweetsList_1, Trends_1, UserInfo_1, ProfileBox_1, Search_1, ContainsPipe_1;
+    var core_1, Hashtag_1, Tweet_1, User_1, Comment_1, TweetsList_1, Trends_1, UserInfo_1, ProfileBox_1, Search_1, ContainsPipe_1;
     var Profile;
     return {
         setters:[
@@ -23,6 +23,9 @@ System.register(['angular2/core', "../../Model/Hashtag", "../../Model/Tweet", ".
             },
             function (User_1_1) {
                 User_1 = User_1_1;
+            },
+            function (Comment_1_1) {
+                Comment_1 = Comment_1_1;
             },
             function (TweetsList_1_1) {
                 TweetsList_1 = TweetsList_1_1;
@@ -84,6 +87,10 @@ System.register(['angular2/core', "../../Model/Hashtag", "../../Model/Tweet", ".
                         if (user != _this.currentUser && _this.currentUser.following.indexOf(user) == -1)
                             _this.notFollowing.push(user);
                     });
+                    this.tweets[0].comments = [new Comment_1.Comment(this.users[0], "Pellentesque a accumsan nunc"), new Comment_1.Comment(this.users[2], "Nam vulputate enim a mollis mattis"), new Comment_1.Comment(this.users[0], "Nam faucibus eleifend eros ut lobortis")];
+                    this.tweets[1].comments = [new Comment_1.Comment(this.users[2], "Phasellus sit amet blandit velit"), new Comment_1.Comment(this.users[3], "Sed varius pulvinar ornare"), new Comment_1.Comment(this.users[2], "Curabitur lectus nibh"), new Comment_1.Comment(this.users[1], "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus")];
+                    this.tweets[2].comments = [new Comment_1.Comment(this.users[3], "Lorem ipsum dolor sit amet,"), new Comment_1.Comment(this.users[2], "Integer sit amet ipsum consectetu")];
+                    this.tweets[3].comments = [new Comment_1.Comment(this.users[1], "Cras vitae faucibus risus."), new Comment_1.Comment(this.users[3], "Nulla vitae elit a risus ullamcorper facilisis"), new Comment_1.Comment(this.users[0], "Nullam ornare nisl vel urna faucibus, non ultrices nibh pulvinar.")];
                     /*Universal data part-end*/
                 }
                 Profile.prototype.onPutFavourited = function (favourite) {

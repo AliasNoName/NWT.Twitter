@@ -9,11 +9,14 @@
                        </span>
                     </div>
                     <ul class="list-inline">
-                        <li><a><i class="glyphicon glyphicon-arrow-left"></i>Reply   </a></li>
+                        <li><a (click)="onShowComments()"><i class="glyphicon glyphicon-arrow-left"></i>Reply   </a></li>
                         <li><a><i class="glyphicon glyphicon-repeat"></i>Retweet   </a></li>
                         <li><a *ngIf="!favourited" (click)="onPutFavourited()"><i class="glyphicon glyphicon-star-empty"></i>Favourite   </a>
                             <a *ngIf="favourited" (click)="onRemoveFavourited()"><i class="glyphicon glyphicon-star"></i>Favourited   </a></li>  
                     </ul>
+                </div>
+                <div>
+                        <comments-list [comments]="tweet.comments"  *ngIf="areCommentsShown"> Loading Comments... </comments-list>
                 </div>
             </div>
 </div>

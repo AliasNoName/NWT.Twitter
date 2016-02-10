@@ -4,6 +4,7 @@ import {CORE_DIRECTIVES} from "angular2/common"
 import {Hashtag as HashtagModel} from "../../Model/Hashtag"
 import {Tweet as TweetModel} from "../../Model/Tweet"
 import {User as UserModel} from "../../Model/User"
+import {Comment as CommentModel} from "../../Model/Comment"
 import {TweetsList} from "../TweetList/TweetsList"
 import {Trends} from "../Trends/Trends"
 import {UserInfo} from "../UserInfo/UserInfo"
@@ -76,6 +77,12 @@ export class Profile {
             if (user != this.currentUser && this.currentUser.following.indexOf(user) == -1)
                 this.notFollowing.push(user);
         });
+        
+        this.tweets[0].comments = [new CommentModel(this.users[0], "Pellentesque a accumsan nunc"), new CommentModel(this.users[2], "Nam vulputate enim a mollis mattis"), new CommentModel(this.users[0], "Nam faucibus eleifend eros ut lobortis")];
+        this.tweets[1].comments = [new CommentModel(this.users[2], "Phasellus sit amet blandit velit"), new CommentModel(this.users[3], "Sed varius pulvinar ornare"), new CommentModel(this.users[2], "Curabitur lectus nibh"), new CommentModel(this.users[1], "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus")];
+        this.tweets[2].comments = [new CommentModel(this.users[3], "Lorem ipsum dolor sit amet,"), new CommentModel(this.users[2], "Integer sit amet ipsum consectetu")];
+        this.tweets[3].comments = [new CommentModel(this.users[1], "Cras vitae faucibus risus."), new CommentModel(this.users[3], "Nulla vitae elit a risus ullamcorper facilisis"), new CommentModel(this.users[0], "Nullam ornare nisl vel urna faucibus, non ultrices nibh pulvinar.")];
+        
     /*Universal data part-end*/
     }
 

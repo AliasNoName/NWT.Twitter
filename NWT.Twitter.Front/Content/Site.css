@@ -8,6 +8,7 @@ a{
 }
 
 
+
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
@@ -254,6 +255,35 @@ main{
 .tweet-text{
 	color: black;
 }
+
+.comment{
+	color: gray;
+	display: flex;
+	min-width: 300px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.comment-user-image{
+	width: 50px;
+	margin-left: 5px;
+	border-radius: 10px;
+	border: solid 4px white;
+	position: absolute;
+}
+
+.comment-data{
+	margin-left: 70px;
+}
+
+.comment-text{
+	color: black;
+}
+
+.comment-list{
+    padding-top:20px;
+}
+
 
 .new-tweet-list{
 	margin-left: 50px;
