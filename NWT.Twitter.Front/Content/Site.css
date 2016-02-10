@@ -3,6 +3,10 @@
 	background-color: #F0F8FF;
 }
 
+a{
+    cursor: pointer;
+}
+
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 

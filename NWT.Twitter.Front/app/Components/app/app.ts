@@ -23,12 +23,14 @@ import {ContainsPipe} from "../../Pipes/ContainsPipe"
 })
 
 @RouteConfig([
-    { path: '/index', component: Index, name: 'Index' },
+    { path: '/home', component: Index, name: 'Index' },
     { path: '/profile', component: Profile, name: 'Profile' },
     { path: '/following', component: Following, name: 'Following' },
     { path: '/favourites', component: Favourites, name: 'Favourites' },
-    { path: '/hashtag', component: Hashtag, name: 'Hashtag' },
-    { path: '/editprofile', component: EditProfile, name: 'EditProfile' }
+    { path: '/hashtag/:data', component: Hashtag, name: 'Hashtag' },
+    { path: '/editprofile', component: EditProfile, name: 'EditProfile' },
+    { path: '/newtweet', component: NewTweet, name: 'NewTweet' },
+    { path: '/', redirectTo: ['Index']}
 ])
 
 export class App {}

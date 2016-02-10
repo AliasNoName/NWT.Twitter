@@ -1,11 +1,15 @@
 import {Component} from "angular2/core"
 import {CORE_DIRECTIVES} from "angular2/common"
+import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
+
+import {Profile} from  '../Profile/Profile';
 import {User as UserModel} from "../../Model/User"
 import {EditProfileForm} from "../EditProfileForm/EditProfileForm"
 
+
 @Component({
     selector: "edit-profile",
-    directives: [EditProfileForm, CORE_DIRECTIVES],
+    directives: [EditProfileForm, CORE_DIRECTIVES, ROUTER_DIRECTIVES],
     templateUrl: "./app/Components/EditProfile/EditProfile.html"
 })
 

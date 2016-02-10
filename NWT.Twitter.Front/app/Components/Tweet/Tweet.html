@@ -2,17 +2,17 @@
                 <div class="panel-body">
                 <img src={{tweet.author.imageUrl}} class="tweet-user-image" alt="user picture" />
                 <div class="tweet-data">
-                    <a src="#"> <label>{{tweet.author.getFullName()}}</label></a>  @{{tweet.author.nickname}} - {{tweet.publishTime|date}}
+                    <a> <label>{{tweet.author.getFullName()}}</label></a>  @{{tweet.author.nickname}} - {{tweet.publishTime|date}}
                     <div class="tweet-text">{{tweet.data}}
                        <span *ngFor="#hashtag of tweet.hashtags">
-                        <a src="#">   {{hashtag.data}}</a>
+                        <a [routerLink]="['Hashtag', {data: hashtag.data}]">   {{hashtag.data}}</a>
                        </span>
                     </div>
                     <ul class="list-inline">
-                        <li><a href="#"><i class="glyphicon glyphicon-arrow-left"></i>Reply   </a></li>
-                        <li><a href="#"><i class="glyphicon glyphicon-repeat"></i>Retweet   </a></li>
-                        <li><a href="#!" *ngIf="!favourited" (click)="onPutFavourited()"><i class="glyphicon glyphicon-star-empty"></i>Favourite   </a>
-                            <a href="#!" *ngIf="favourited" (click)="onRemoveFavourited()"><i class="glyphicon glyphicon-star"></i>Favourited   </a></li>  
+                        <li><a><i class="glyphicon glyphicon-arrow-left"></i>Reply   </a></li>
+                        <li><a><i class="glyphicon glyphicon-repeat"></i>Retweet   </a></li>
+                        <li><a *ngIf="!favourited" (click)="onPutFavourited()"><i class="glyphicon glyphicon-star-empty"></i>Favourite   </a>
+                            <a *ngIf="favourited" (click)="onRemoveFavourited()"><i class="glyphicon glyphicon-star"></i>Favourited   </a></li>  
                     </ul>
                 </div>
             </div>

@@ -19,19 +19,12 @@
                     <li>
                         <span><a [routerLink]="['Profile']"><img src="../../../Content/Users/User1.png" class="user-image" alt="user picture" /></a></span>
                     </li>
-                    <li class="main-navbar-menu-item" id="new-tweet"> <a href="#"> <h4 id="new-tweet-text">Tweet  <span class="glyphicon glyphicon-pencil"></span></h4> </a></li>
+                    <li class="main-navbar-menu-item" id="new-tweet"> <a [routerLink]="['NewTweet']"> <h4 id="new-tweet-text">Tweet  <span class="glyphicon glyphicon-pencil"></span></h4> </a></li>
                 </ul>
             </div>
         </div>
     </nav>
     
 <div class="container body-content">
-    <!--testing part-->
-        <span>
-          <a [routerLink]="['Hashtag']"> Hashtag view</a>
-            <span style="display:inline-block; width: 30px;"></span>
-          <a [routerLink]="['EditProfile']"> Edit profile</a>
-        </span>
-        <!--testing part-->
     <router-outlet></router-outlet>
 </div>

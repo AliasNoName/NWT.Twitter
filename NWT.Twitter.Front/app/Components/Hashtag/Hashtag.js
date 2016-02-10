@@ -1,4 +1,4 @@
-System.register(["angular2/core", "../../Model/Hashtag", "../../Model/Tweet", "../../Model/User", "../TweetList/TweetsList", "../Trends/Trends", "../UserInfo/UserInfo", "../ProfileBox/ProfileBox", "../Search/Search", "../../Pipes/ContainsPipe"], function(exports_1) {
+System.register(["angular2/core", 'angular2/router', "../../Model/Hashtag", "../../Model/Tweet", "../../Model/User", "../TweetList/TweetsList", "../Trends/Trends", "../UserInfo/UserInfo", "../ProfileBox/ProfileBox", "../Search/Search", "../../Pipes/ContainsPipe"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,12 +8,15 @@ System.register(["angular2/core", "../../Model/Hashtag", "../../Model/Tweet", ".
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, Hashtag_1, Tweet_1, User_1, TweetsList_1, Trends_1, UserInfo_1, ProfileBox_1, Search_1, ContainsPipe_1;
+    var core_1, router_1, Hashtag_1, Tweet_1, User_1, TweetsList_1, Trends_1, UserInfo_1, ProfileBox_1, Search_1, ContainsPipe_1;
     var Hashtag;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
             },
             function (Hashtag_1_1) {
                 Hashtag_1 = Hashtag_1_1;
@@ -44,8 +47,9 @@ System.register(["angular2/core", "../../Model/Hashtag", "../../Model/Tweet", ".
             }],
         execute: function() {
             Hashtag = (function () {
-                function Hashtag() {
+                function Hashtag(routeParams) {
                     var _this = this;
+                    this.currentHashtag = new Hashtag_1.Hashtag(routeParams.get('data'));
                     this.searchKey = "";
                     this.hashtags = [
                         new Hashtag_1.Hashtag("#hashtag_trend1"),
@@ -85,11 +89,10 @@ System.register(["angular2/core", "../../Model/Hashtag", "../../Model/Tweet", ".
                             _this.notFollowing.push(user);
                     });
                     /*Universal data part-end*/
-                    this.currentHashtag = this.hashtags[1];
                     this.twetsWithHashtag = [];
                     this.tweets.forEach(function (tweet) {
                         tweet.hashtags.forEach(function (hashtag) {
-                            if (hashtag == _this.currentHashtag)
+                            if (hashtag.data == _this.currentHashtag.data)
                                 _this.twetsWithHashtag.push(tweet);
                         });
                     });
@@ -113,7 +116,7 @@ System.register(["angular2/core", "../../Model/Hashtag", "../../Model/Tweet", ".
                         pipes: [ContainsPipe_1.ContainsPipe],
                         templateUrl: "./app/Components/Hashtag/Hashtag.html"
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [router_1.RouteParams])
                 ], Hashtag);
                 return Hashtag;
             })();

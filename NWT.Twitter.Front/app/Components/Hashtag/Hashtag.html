@@ -3,6 +3,7 @@
      </div>
 
 <main>
+    {{data}}
     <div id="profile-data-div">
         <tweets-list [tweets]="twetsWithHashtag|contains:searchKey" [currentUser]="currentUser" (putFavourited)="onPutFavourited($event)"  (remove-favourited)="onRemoveFavourited($event)">Loading User's Tweets..</tweets-list>
     </div>

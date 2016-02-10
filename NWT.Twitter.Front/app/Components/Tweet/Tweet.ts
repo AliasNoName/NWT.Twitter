@@ -1,12 +1,13 @@
 import {Component, EventEmitter} from "angular2/core"
 import {CORE_DIRECTIVES} from "angular2/common"
+import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 import {Tweet as TweetModel} from "../../Model/Tweet"
 
 @Component({
     selector: "tweet",
     inputs: ["tweet", "favourited"],
     outputs: ["putFavourited", "removeFavourited"],
-    directives: [CORE_DIRECTIVES],
+    directives: [CORE_DIRECTIVES, ROUTER_DIRECTIVES],
     templateUrl: "./app/Components/Tweet/Tweet.html"
 })
 

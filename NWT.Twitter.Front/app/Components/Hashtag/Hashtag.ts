@@ -1,4 +1,5 @@
 import {Component} from "angular2/core"
+import {RouteParams} from 'angular2/router';
 import {Hashtag as HashtagModel} from "../../Model/Hashtag"
 import {Tweet as TweetModel} from "../../Model/Tweet"
 import {User as UserModel} from "../../Model/User"
@@ -29,7 +30,8 @@ export class Hashtag {
     public notFollowing: UserModel[];
     private searchKey: string;
 
-    constructor() {
+    constructor(routeParams: RouteParams) {
+        this.currentHashtag = new HashtagModel(routeParams.get('data'));
         this.searchKey = "";
         this.hashtags = [
             new HashtagModel("#hashtag_trend1"),
@@ -78,13 +80,11 @@ export class Hashtag {
         });
         /*Universal data part-end*/
 
-        this.currentHashtag = this.hashtags[1]; 
-
         this.twetsWithHashtag = [];
 
         this.tweets.forEach(tweet=> {
             tweet.hashtags.forEach(hashtag=> {
-                if (hashtag == this.currentHashtag)
+                if (hashtag.data == this.currentHashtag.data)
                     this.twetsWithHashtag.push(tweet);
             });
         });
