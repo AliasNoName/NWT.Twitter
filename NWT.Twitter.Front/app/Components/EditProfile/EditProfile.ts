@@ -1,6 +1,6 @@
 import {Component} from "angular2/core"
 import {CORE_DIRECTIVES} from "angular2/common"
-import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
+import {RouteConfig, RouteData} from 'angular2/router';
 
 import {Profile} from  '../Profile/Profile';
 import {User as UserModel} from "../../Model/User"
@@ -9,19 +9,22 @@ import {EditProfileForm} from "../EditProfileForm/EditProfileForm"
 
 @Component({
     selector: "edit-profile",
-    directives: [EditProfileForm, CORE_DIRECTIVES, ROUTER_DIRECTIVES],
+    directives: [EditProfileForm, CORE_DIRECTIVES],
     templateUrl: "./app/Components/EditProfile/EditProfile.html"
 })
 
 export class EditProfile {
     public currentUser: UserModel;
+   
     public newData: UserModel;
     public errorOccured: boolean;
     public errorText: string;
     public retypedPwd: string;
-
-    constructor() {
-        this.currentUser = new UserModel("Ime", "Prezime", "Nickname", "imeprezime@gmail.com", "Password.1", "/Content/Users/User1.png");
+    
+    constructor(data: RouteData)
+    {
+        this.currentUser = data.get('currentUser');
+        
         this.newData = this.currentUser;
         this.retypedPwd = this.currentUser.password;
         this.errorOccured = false;

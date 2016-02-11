@@ -23,12 +23,12 @@
                   {{errorText}}
                 </div>
 
-                <edit-profile-form inLabel="Name:" type-of-data= "text" (outValue) = "onNameChange($event)" [inValue]="currentUser.name" >Loading form..</edit-profile-form>
-                <edit-profile-form inLabel="Last Name:" type-of-data= "text" (outValue) = "onLastNameChange($event)" [inValue]="currentUser.lastname" >Loading form..</edit-profile-form>
-                <edit-profile-form inLabel="Nickname:" type-of-data= "text" (outValue) = "onNicknameChange($event)" [inValue]="currentUser.nickname" >Loading form..</edit-profile-form>
-                <edit-profile-form inLabel="E-mail:" type-of-data= "email" (outValue) = "onEmailChange($event)" [inValue]="currentUser.email" >Loading form..</edit-profile-form>
-                <edit-profile-form inLabel="Password:" type-of-data= "text" (outValue) = "onPasswordChange($event)" [inValue]="currentUser.password" >Loading form..</edit-profile-form>
-                <edit-profile-form inLabel="Confirm password:" type-of-data= "text" (outValue) = "onRepeatPasswordChange($event)" [inValue]="retypedPwd" >Loading form..</edit-profile-form>
+                <edit-profile-form inLabel="Name:" typeOfData= "text" (outValue) = "onNameChange($event)" [inValue]="currentUser.name" >Loading form..</edit-profile-form>
+                <edit-profile-form inLabel="Last Name:" typeOfData= "text" (outValue) = "onLastNameChange($event)" [inValue]="currentUser.lastname" >Loading form..</edit-profile-form>
+                <edit-profile-form inLabel="Nickname:" typeOfData= "text" (outValue) = "onNicknameChange($event)" [inValue]="currentUser.nickname" >Loading form..</edit-profile-form>
+                <edit-profile-form inLabel="E-mail:" typeOfData= "email" (outValue) = "onEmailChange($event)" [inValue]="currentUser.email" >Loading form..</edit-profile-form>
+                <edit-profile-form inLabel="Password:" typeOfData= "password" (outValue) = "onPasswordChange($event)" [inValue]="currentUser.password" >Loading form..</edit-profile-form>
+                <edit-profile-form inLabel="Confirm password:" typeOfData= "password" (outValue) = "onRepeatPasswordChange($event)" [inValue]="retypedPwd" >Loading form..</edit-profile-form>
 
 
                   <div class="form-group">

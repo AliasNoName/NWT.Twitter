@@ -1,6 +1,6 @@
 <main>
     <aside id="user-panel-container">
-        <user-info [user]="users[0]">Loading user info..</user-info>
+        <user-info [user]="currentUser">Loading user info..</user-info>
         <search (searchData)="onSearchKeyUpdate($event)">Loading search bar..</search>
         <br/>
         <trends [hashtags]="hashtags">Loading list..</trends>

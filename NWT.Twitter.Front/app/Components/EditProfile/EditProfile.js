@@ -1,4 +1,4 @@
-System.register(["angular2/core", "angular2/common", 'angular2/router', "../../Model/User", "../EditProfileForm/EditProfileForm"], function(exports_1) {
+System.register(["angular2/core", "angular2/common", 'angular2/router', "../EditProfileForm/EditProfileForm"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(["angular2/core", "angular2/common", 'angular2/router', "../../M
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, common_1, router_1, User_1, EditProfileForm_1;
+    var core_1, common_1, router_1, EditProfileForm_1;
     var EditProfile;
     return {
         setters:[
@@ -21,16 +21,13 @@ System.register(["angular2/core", "angular2/common", 'angular2/router', "../../M
             function (router_1_1) {
                 router_1 = router_1_1;
             },
-            function (User_1_1) {
-                User_1 = User_1_1;
-            },
             function (EditProfileForm_1_1) {
                 EditProfileForm_1 = EditProfileForm_1_1;
             }],
         execute: function() {
             EditProfile = (function () {
-                function EditProfile() {
-                    this.currentUser = new User_1.User("Ime", "Prezime", "Nickname", "imeprezime@gmail.com", "Password.1", "/Content/Users/User1.png");
+                function EditProfile(data) {
+                    this.currentUser = data.get('currentUser');
                     this.newData = this.currentUser;
                     this.retypedPwd = this.currentUser.password;
                     this.errorOccured = false;
@@ -143,10 +140,10 @@ System.register(["angular2/core", "angular2/common", 'angular2/router', "../../M
                 EditProfile = __decorate([
                     core_1.Component({
                         selector: "edit-profile",
-                        directives: [EditProfileForm_1.EditProfileForm, common_1.CORE_DIRECTIVES, router_1.ROUTER_DIRECTIVES],
+                        directives: [EditProfileForm_1.EditProfileForm, common_1.CORE_DIRECTIVES],
                         templateUrl: "./app/Components/EditProfile/EditProfile.html"
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [router_1.RouteData])
                 ], EditProfile);
                 return EditProfile;
             })();
