@@ -86,7 +86,39 @@ export class Index {
     }
 
     private onNewTweetPublish(data: string) {
+        var hashtaginfo:string;
+        var dataFirstPart:string;
+        var dataSecondPart:string;
+        
+        var i:number;
+        var newHashtags: HashtagModel[]= [];
+        
+        var startIndex = data.indexOf("#");
+        while (startIndex!=-1)
+        {
+            hashtaginfo = "";
+            for(i=startIndex; data[i]!=" " && i<data.length; i++)
+            {
+                hashtaginfo = hashtaginfo.concat(data[i]);
+            }
+            dataFirstPart = data.slice(0, startIndex);
+            dataSecondPart = data.slice(startIndex + hashtaginfo.length, data.length);
+            data = dataFirstPart.concat(dataSecondPart);
+        
+            newHashtags.push(new HashtagModel(hashtaginfo));
+        
+            startIndex = data.indexOf("#", startIndex + hashtaginfo.length);
+        }
+        
         var newTweet =new TweetModel(this.currentUser, new Date(), data);
+        
+        for(i=0; i<newHashtags.length; i++)
+        {
+            this.hashtags.push(newHashtags[i]);
+            newTweet.hashtags.push(newHashtags[i]);
+        }
+        
+        
         this.tweets.unshift(newTweet);
         this.currentUser.tweets.push(newTweet);
     }

@@ -94,7 +94,28 @@ System.register(["angular2/core", "../../Model/Hashtag", "../../Model/Tweet", ".
                     /*Universal data part-end*/
                 }
                 Index.prototype.onNewTweetPublish = function (data) {
+                    var hashtaginfo;
+                    var dataFirstPart;
+                    var dataSecondPart;
+                    var i;
+                    var newHashtags = [];
+                    var startIndex = data.indexOf("#");
+                    while (startIndex != -1) {
+                        hashtaginfo = "";
+                        for (i = startIndex; data[i] != " " && i < data.length; i++) {
+                            hashtaginfo = hashtaginfo.concat(data[i]);
+                        }
+                        dataFirstPart = data.slice(0, startIndex);
+                        dataSecondPart = data.slice(startIndex + hashtaginfo.length, data.length);
+                        data = dataFirstPart.concat(dataSecondPart);
+                        newHashtags.push(new Hashtag_1.Hashtag(hashtaginfo));
+                        startIndex = data.indexOf("#", startIndex + hashtaginfo.length);
+                    }
                     var newTweet = new Tweet_1.Tweet(this.currentUser, new Date(), data);
+                    for (i = 0; i < newHashtags.length; i++) {
+                        this.hashtags.push(newHashtags[i]);
+                        newTweet.hashtags.push(newHashtags[i]);
+                    }
                     this.tweets.unshift(newTweet);
                     this.currentUser.tweets.push(newTweet);
                 };
