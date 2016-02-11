@@ -11,7 +11,7 @@ import {Comment} from "../Comment/Comment"
     directives: [CORE_DIRECTIVES, Comment],
     template:
     `
-<div class="panel panel-default comment-list">
+<div>
         <div *ngFor="#comment of comments">
                 <comment [comment]="comment"></comment>
         </div>

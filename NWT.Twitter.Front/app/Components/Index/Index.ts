@@ -86,7 +86,7 @@ export class Index {
     }
 
     private onNewTweetPublish(data: string) {
-        var newTweet =new TweetModel(this.currentUser, new Date(), data)
+        var newTweet =new TweetModel(this.currentUser, new Date(), data);
         this.tweets.unshift(newTweet);
         this.currentUser.tweets.push(newTweet);
     }

@@ -15,8 +15,9 @@
                             <a *ngIf="favourited" (click)="onRemoveFavourited()"><i class="glyphicon glyphicon-star"></i>Favourited   </a></li>  
                     </ul>
                 </div>
-                <div>
-                        <comments-list [comments]="tweet.comments"  *ngIf="areCommentsShown"> Loading Comments... </comments-list>
+                <div *ngIf="areCommentsShown" class="panel panel-default comment-list">
+                        <comments-list [comments]="tweet.comments"> Loading Comments... </comments-list>
+                        <new-comment [currentUser]="currentUser" (publish)="onNewCommentPublish($event)">Loading new comment form</new-comment>
                 </div>
             </div>
 </div>

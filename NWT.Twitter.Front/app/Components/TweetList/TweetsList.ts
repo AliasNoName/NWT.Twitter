@@ -17,7 +17,7 @@ import {Tweet} from "../Tweet/Tweet"
     `
 <div>
         <div *ngFor="#tweet of tweets">
-                <tweet [tweet]="tweet" [favourited]="checkIfFavourited(tweet)" (putFavourited)="onPutFavourited($event)"  (removeFavourited)="onRemoveFavourited($event)"></tweet>
+                <tweet [tweet]="tweet" [currentUser]="currentUser" [favourited]="checkIfFavourited(tweet)" (putFavourited)="onPutFavourited($event)"  (removeFavourited)="onRemoveFavourited($event)"></tweet>
         </div>
 </div>
     `
