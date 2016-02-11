@@ -31,8 +31,8 @@ System.register(["angular2/core"], function(exports_1) {
                         input.setAttribute("style", "background-color: none;");
                 };
                 NewTweet.prototype.onPublish = function (input) {
-                    var value = input.value.trim();
-                    if (value == "") {
+                    var value = input.value;
+                    if (value.trim() == "") {
                         return;
                     }
                     if (value.length > 140) {

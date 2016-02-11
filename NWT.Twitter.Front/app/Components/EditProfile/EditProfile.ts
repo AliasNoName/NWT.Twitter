@@ -20,6 +20,7 @@ export class EditProfile {
     public errorOccured: boolean;
     public errorText: string;
     public retypedPwd: string;
+    public changesSaved:boolean;
     
     constructor(data: RouteData)
     {
@@ -29,10 +30,12 @@ export class EditProfile {
         this.retypedPwd = this.currentUser.password;
         this.errorOccured = false;
         this.errorText = "";
+        this.changesSaved = false;
     }
 
     private imageChange(inputValue: any): void {
         this.currentUser.imageUrl = URL.createObjectURL(inputValue.target.files[0]);
+        this.changesSaved = false;
     }
 
      
@@ -107,27 +110,33 @@ export class EditProfile {
     
     private onNameChange(data: string) {
         this.newData.name = data;
+        this.changesSaved = false;
 
     }
 
     private onLastNameChange(data: string) {
         this.newData.lastname = data;
+        this.changesSaved = false;
     }
 
     private onNicknameChange(data: string) {
         this.newData.nickname = data;
+        this.changesSaved = false;
     }
 
     private onEmailChange(data: string) {
         this.newData.email = data;
+        this.changesSaved = false;
     }
 
     private onPasswordChange(data: string) {
         this.newData.password = data;
+        this.changesSaved = false;
     }
 
     private onRepeatPasswordChange(data: string) {
         this.retypedPwd = data;
+        this.changesSaved = false;
     }
 
     onSubmit(): void {
@@ -137,9 +146,10 @@ export class EditProfile {
             && this.checkEmail(this.newData.email)
             && this.checkPassword(this.newData.password)
             && this.checkRepeatedPassword(this.retypedPwd, this.newData.password)) {
-            this.errorText = "";
+            this.errorText = " ";
             this.errorOccured = false;
             this.currentUser = this.newData;
+            this.changesSaved = true;
         }
         else
             this.errorOccured = true;

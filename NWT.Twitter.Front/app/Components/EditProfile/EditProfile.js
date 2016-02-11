@@ -32,9 +32,11 @@ System.register(["angular2/core", "angular2/common", 'angular2/router', "../Edit
                     this.retypedPwd = this.currentUser.password;
                     this.errorOccured = false;
                     this.errorText = "";
+                    this.changesSaved = false;
                 }
                 EditProfile.prototype.imageChange = function (inputValue) {
                     this.currentUser.imageUrl = URL.createObjectURL(inputValue.target.files[0]);
+                    this.changesSaved = false;
                 };
                 EditProfile.prototype.checkName = function (data) {
                     var value = data.trim();
@@ -100,21 +102,27 @@ System.register(["angular2/core", "angular2/common", 'angular2/router', "../Edit
                 };
                 EditProfile.prototype.onNameChange = function (data) {
                     this.newData.name = data;
+                    this.changesSaved = false;
                 };
                 EditProfile.prototype.onLastNameChange = function (data) {
                     this.newData.lastname = data;
+                    this.changesSaved = false;
                 };
                 EditProfile.prototype.onNicknameChange = function (data) {
                     this.newData.nickname = data;
+                    this.changesSaved = false;
                 };
                 EditProfile.prototype.onEmailChange = function (data) {
                     this.newData.email = data;
+                    this.changesSaved = false;
                 };
                 EditProfile.prototype.onPasswordChange = function (data) {
                     this.newData.password = data;
+                    this.changesSaved = false;
                 };
                 EditProfile.prototype.onRepeatPasswordChange = function (data) {
                     this.retypedPwd = data;
+                    this.changesSaved = false;
                 };
                 EditProfile.prototype.onSubmit = function () {
                     if (this.checkName(this.newData.name)
@@ -123,9 +131,10 @@ System.register(["angular2/core", "angular2/common", 'angular2/router', "../Edit
                         && this.checkEmail(this.newData.email)
                         && this.checkPassword(this.newData.password)
                         && this.checkRepeatedPassword(this.retypedPwd, this.newData.password)) {
-                        this.errorText = "";
+                        this.errorText = " ";
                         this.errorOccured = false;
                         this.currentUser = this.newData;
+                        this.changesSaved = true;
                     }
                     else
                         this.errorOccured = true;

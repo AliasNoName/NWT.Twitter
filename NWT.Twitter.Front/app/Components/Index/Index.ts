@@ -64,18 +64,17 @@ export class Index {
         var startIndex = data.indexOf("#");
         while (startIndex!=-1)
         {
-            hashtaginfo = "";
-            for(i=startIndex; data[i]!=" " && i<data.length; i++)
-            {
-                hashtaginfo = hashtaginfo.concat(data[i]);
-            }
+            hashtaginfo = "#";
+            for(i=startIndex+1; i < data.length && data[i] !=' ' && data[i]!='#'; i++)
+               hashtaginfo = hashtaginfo.concat(data[i]);
+                               
             dataFirstPart = data.slice(0, startIndex);
             dataSecondPart = data.slice(startIndex + hashtaginfo.length, data.length);
             data = dataFirstPart.concat(dataSecondPart);
 
            newHashtags.push(new HashtagModel(hashtaginfo));
-        
-            startIndex = data.indexOf("#", startIndex + hashtaginfo.length);
+           
+           startIndex = data.indexOf("#", startIndex);
         }
          
         var newTweet =new TweetModel(this.currentUser, new Date(), data);

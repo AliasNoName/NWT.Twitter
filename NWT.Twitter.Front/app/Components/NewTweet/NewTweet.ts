@@ -26,8 +26,8 @@ export class NewTweet {
     }
 
     private onPublish(input: HTMLInputElement): void {
-        var value = input.value.trim();
-        if (value == "") { return; }
+        var value = input.value;
+        if (value.trim() == "") { return; }
 
         if (value.length > 140) {
             return;

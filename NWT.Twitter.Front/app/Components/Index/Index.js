@@ -70,15 +70,14 @@ System.register(["angular2/core", 'angular2/router', "../../Model/Hashtag", "../
                     var newHashtags = [];
                     var startIndex = data.indexOf("#");
                     while (startIndex != -1) {
-                        hashtaginfo = "";
-                        for (i = startIndex; data[i] != " " && i < data.length; i++) {
+                        hashtaginfo = "#";
+                        for (i = startIndex + 1; i < data.length && data[i] != ' ' && data[i] != '#'; i++)
                             hashtaginfo = hashtaginfo.concat(data[i]);
-                        }
                         dataFirstPart = data.slice(0, startIndex);
                         dataSecondPart = data.slice(startIndex + hashtaginfo.length, data.length);
                         data = dataFirstPart.concat(dataSecondPart);
                         newHashtags.push(new Hashtag_1.Hashtag(hashtaginfo));
-                        startIndex = data.indexOf("#", startIndex + hashtaginfo.length);
+                        startIndex = data.indexOf("#", startIndex);
                     }
                     var newTweet = new Tweet_1.Tweet(this.currentUser, new Date(), data);
                     for (i = 0; i < newHashtags.length; i++) {
