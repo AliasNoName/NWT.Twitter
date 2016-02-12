@@ -11,13 +11,13 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav" id="main-navbar-menu">
                     <li class="main-navbar-menu-item"> <a [routerLink]="['Index']"> <h4>Home  <span class="glyphicon glyphicon-home"></span></h4> </a></li>
-                    <li class="main-navbar-menu-item"> <a [routerLink]="['Profile']"><h4>Profile   <span class="glyphicon glyphicon-user" ></span></h4></a></li>
+                    <li class="main-navbar-menu-item"> <a [routerLink]="['Profile', {nickname: currentUser.nickname}]"><h4>Profile   <span class="glyphicon glyphicon-user" ></span></h4></a></li>
                     <li class="main-navbar-menu-item"> <a [routerLink]="['Favourites']"><h4>Favourites   <span class="glyphicon glyphicon-star"></span></h4></a></li>
                     <li class="main-navbar-menu-item"> <a [routerLink]="['Following']"><h4>Following   <span class="glyphicon glyphicon-heart" ></span></h4></a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <span><a [routerLink]="['Profile']"><img src="../../../Content/Users/User1.png" class="user-image" alt="user picture" /></a></span>
+                        <span><a [routerLink]="['Profile', {nickname: currentUser.nickname}]"><img src="../../../Content/Users/User1.png" class="user-image" alt="user picture" /></a></span>
                     </li>
                     <li class="main-navbar-menu-item" id="new-tweet"> <a [routerLink]="['Index']"> <h4 id="new-tweet-text">Tweet  <span class="glyphicon glyphicon-pencil"></span></h4> </a></li>
                 </ul>

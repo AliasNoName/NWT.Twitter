@@ -1,12 +1,15 @@
 import {Component,EventEmitter} from "angular2/core"
+import {User as UserModel} from "../../Model/User"
 
 @Component({
     selector: "new-tweet",
+    inputs: ["currentUser"],
     outputs: ["publish"],
     templateUrl: "./app/Components/NewTweet/NewTweet.html"
 })
 
 export class NewTweet {
+    public currentUser: UserModel;
     private numberOfSymbols: number;
     public publish: EventEmitter<any>;
 

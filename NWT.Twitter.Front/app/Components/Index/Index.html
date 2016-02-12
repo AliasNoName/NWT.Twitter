@@ -9,8 +9,8 @@
     </aside>
 
     <div id="main-content-container" class="panel">
-        <new-tweet (publish)="onNewTweetPublish($event)">Loading new tweet window..</new-tweet>
-        <tweets-list [tweets]="tweets|contains:searchKey" [currentUser]="currentUser" (putFavourited)="onPutFavourited($event)"  (removeFavourited)="onRemoveFavourited($event)">Loading Users Tweets..</tweets-list>
+        <new-tweet [currentUser]="currentUser" (publish)="onNewTweetPublish($event)">Loading new tweet window..</new-tweet>
+        <tweets-list [tweets]="tweetsFollowing|contains:searchKey" [currentUser]="currentUser" (putFavourited)="onPutFavourited($event)"  (removeFavourited)="onRemoveFavourited($event)">Loading Users Tweets..</tweets-list>
     </div>
 
 </main>

@@ -66,8 +66,9 @@ export class App {
         ];
 
         this.currentUser = this.users[0];
-        this.currentUser.tweets = this.tweets.filter(tweet => tweet.author == this.currentUser);
         this.currentUser.favourites = [this.tweets[1], this.tweets[2]];
+        
+        this.users.forEach(user => user.tweets = this.tweets.filter(tweet => tweet.author == user));
 
         
         this.tweets[0].comments = [new CommentModel(this.users[0], "Pellentesque a accumsan nunc"), new CommentModel(this.users[2], "Nam vulputate enim a mollis mattis"), new CommentModel(this.users[0], "Nam faucibus eleifend eros ut lobortis")];
@@ -78,11 +79,11 @@ export class App {
     
     router_.config([
                 { path: '/home', component: Index, name: 'Index', data: {currentUser: this.currentUser, hashtags: this.hashtags, tweets: this.tweets} },
-                { path: '/profile', component: Profile, name: 'Profile', data: {currentUser: this.currentUser, hashtags: this.hashtags} },
+                { path: '/profile/:nickname', component: Profile, name: 'Profile', data: {currentUser: this.currentUser, hashtags: this.hashtags, users: this.users} },
                 { path: '/following', component: Following, name: 'Following', data: {currentUser: this.currentUser, hashtags: this.hashtags, users: this.users}},
                 { path: '/favourites', component: Favourites, name: 'Favourites', data: {currentUser: this.currentUser, hashtags: this.hashtags, tweets: this.tweets}},
                 { path: '/hashtag/:data', component: Hashtag, name: 'Hashtag', data: {currentUser: this.currentUser, hashtags: this.hashtags, tweets: this.tweets} }, 
-                { path: '/editprofile', component: EditProfile, name: 'EditProfile', data: {currentUser: this.currentUser} },
+                { path: '/editprofile', component: EditProfile, name: 'EditProfile', data: {currentUser: this.currentUser, users: this.users} },
                 { path: '/', redirectTo: ['Index']}
         ])
     }

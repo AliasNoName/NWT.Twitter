@@ -45,6 +45,7 @@ System.register(["angular2/core"], function(exports_1) {
                 NewTweet = __decorate([
                     core_1.Component({
                         selector: "new-tweet",
+                        inputs: ["currentUser"],
                         outputs: ["publish"],
                         templateUrl: "./app/Components/NewTweet/NewTweet.html"
                     }), 

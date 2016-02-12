@@ -1,7 +1,7 @@
         <div class="panel panel-default" id="profile-panel">
     <img src={{user.imageUrl}} id="profile-user-image" alt="user picture" />
-    <a [routerLink]="['Profile']"> <label id="profile-user-name">{{user.getFullName()}}</label><br/></a>
-    <a [routerLink]="['Profile']"> <span id="profile-nickname">@{{user.nickname}}</span><br/></a>
+    <a [routerLink]="['Profile', {nickname: user.nickname}]"> <label id="profile-user-name">{{user.getFullName()}}</label><br/></a>
+    <a [routerLink]="['Profile', {nickname: user.nickname}]"> <span id="profile-nickname">@{{user.nickname}}</span><br/></a>
     <ul class="hidden-xs nav navbar-nav">
         <li class="profile-info">
             TWEETS <br/>
@@ -12,5 +12,5 @@
             <label>{{user.numberFollowing()}}</label>
         </li>
     </ul>
-    <button [routerLink]="['EditProfile']" class="btn button pull-right edit-profile">Edit Profile</button>
+    <button *ngIf="isUserCurrentUser" [routerLink]="['EditProfile']" class="btn button pull-right edit-profile">Edit Profile</button>
 </div>

@@ -45,10 +45,12 @@ System.register(["angular2/core", 'angular2/router', "../../Model/Hashtag", "../
         execute: function() {
             Index = (function () {
                 function Index(data) {
+                    var _this = this;
                     this.currentUser = data.get('currentUser');
                     this.hashtags = data.get('hashtags');
                     this.tweets = data.get('tweets');
                     this.searchKey = "";
+                    this.tweetsFollowing = this.tweets.filter(function (tweet) { return _this.currentUser.following.find(function (user) { return tweet.author == user; }) != null || tweet.author == _this.currentUser; });
                 }
                 Index.prototype.onPutFavourited = function (favourite) {
                     this.currentUser.favourites.unshift(favourite);
@@ -86,6 +88,7 @@ System.register(["angular2/core", 'angular2/router', "../../Model/Hashtag", "../
                             this.hashtags.push(newHashtags[i]);
                     }
                     this.tweets.unshift(newTweet);
+                    this.tweetsFollowing.unshift(newTweet);
                     this.currentUser.tweets.unshift(newTweet);
                 };
                 Index = __decorate([

@@ -1,8 +1,8 @@
-<profile-box [user] = "currentUser" >Loading user info..</profile-box>
+<profile-box [user] = "user" [isUserCurrentUser]="isUserCurrentUser">Loading user info..</profile-box>
 
 <main>
     <div id="profile-data-div">
-        <tweets-list [tweets]="currentUser.tweets|contains:searchKey" [currentUser]="currentUser" (putFavourited)="onPutFavourited($event)"  (removeFavourited)="onRemoveFavourited($event)">Loading User's Tweets..</tweets-list>
+        <tweets-list [tweets]="user.tweets|contains:searchKey" [currentUser]="currentUser" (putFavourited)="onPutFavourited($event)"  (removeFavourited)="onRemoveFavourited($event)">Loading User's Tweets..</tweets-list>
     </div>
 
     <aside id="user-panel-container" class="hidden-xs trends">

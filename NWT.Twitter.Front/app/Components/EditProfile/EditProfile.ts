@@ -15,6 +15,7 @@ import {EditProfileForm} from "../EditProfileForm/EditProfileForm"
 
 export class EditProfile {
     public currentUser: UserModel;
+    public users: UserModel[];
    
     public newData: UserModel;
     public errorOccured: boolean;
@@ -25,6 +26,7 @@ export class EditProfile {
     constructor(data: RouteData)
     {
         this.currentUser = data.get('currentUser');
+        this.users = data.get('users');
         
         this.newData = this.currentUser;
         this.retypedPwd = this.currentUser.password;
@@ -62,6 +64,11 @@ export class EditProfile {
         var value = data.trim();
         if (value == "") {
             this.errorText = "Nickname required!";
+            return false;
+        }
+        if(this.users.find(user=>user.nickname==data&&user!=this.currentUser)!=null)
+        {
+            this.errorText = "Nickname already taken!";
             return false;
         }
         return true;

@@ -79,19 +79,19 @@ System.register(['angular2/core', 'angular2/router', '../profile/profile', '../F
                         new Tweet_1.Tweet(this.users[0], new Date(2015, 12, 2), "Donec lacinia massa lectus. Sed a tristique odio.", [this.hashtags[3], this.hashtags[4], this.hashtags[1]])
                     ];
                     this.currentUser = this.users[0];
-                    this.currentUser.tweets = this.tweets.filter(function (tweet) { return tweet.author == _this.currentUser; });
                     this.currentUser.favourites = [this.tweets[1], this.tweets[2]];
+                    this.users.forEach(function (user) { return user.tweets = _this.tweets.filter(function (tweet) { return tweet.author == user; }); });
                     this.tweets[0].comments = [new Comment_1.Comment(this.users[0], "Pellentesque a accumsan nunc"), new Comment_1.Comment(this.users[2], "Nam vulputate enim a mollis mattis"), new Comment_1.Comment(this.users[0], "Nam faucibus eleifend eros ut lobortis")];
                     this.tweets[1].comments = [new Comment_1.Comment(this.users[2], "Phasellus sit amet blandit velit"), new Comment_1.Comment(this.users[3], "Sed varius pulvinar ornare"), new Comment_1.Comment(this.users[2], "Curabitur lectus nibh"), new Comment_1.Comment(this.users[1], "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus")];
                     this.tweets[2].comments = [new Comment_1.Comment(this.users[3], "Lorem ipsum dolor sit amet,"), new Comment_1.Comment(this.users[2], "Integer sit amet ipsum consectetu")];
                     this.tweets[3].comments = [new Comment_1.Comment(this.users[1], "Cras vitae faucibus risus."), new Comment_1.Comment(this.users[3], "Nulla vitae elit a risus ullamcorper facilisis"), new Comment_1.Comment(this.users[0], "Nullam ornare nisl vel urna faucibus, non ultrices nibh pulvinar.")];
                     router_.config([
                         { path: '/home', component: Index_1.Index, name: 'Index', data: { currentUser: this.currentUser, hashtags: this.hashtags, tweets: this.tweets } },
-                        { path: '/profile', component: profile_1.Profile, name: 'Profile', data: { currentUser: this.currentUser, hashtags: this.hashtags } },
+                        { path: '/profile/:nickname', component: profile_1.Profile, name: 'Profile', data: { currentUser: this.currentUser, hashtags: this.hashtags, users: this.users } },
                         { path: '/following', component: Following_1.Following, name: 'Following', data: { currentUser: this.currentUser, hashtags: this.hashtags, users: this.users } },
                         { path: '/favourites', component: Favourites_1.Favourites, name: 'Favourites', data: { currentUser: this.currentUser, hashtags: this.hashtags, tweets: this.tweets } },
                         { path: '/hashtag/:data', component: Hashtag_1.Hashtag, name: 'Hashtag', data: { currentUser: this.currentUser, hashtags: this.hashtags, tweets: this.tweets } },
-                        { path: '/editprofile', component: EditProfile_1.EditProfile, name: 'EditProfile', data: { currentUser: this.currentUser } },
+                        { path: '/editprofile', component: EditProfile_1.EditProfile, name: 'EditProfile', data: { currentUser: this.currentUser, users: this.users } },
                         { path: '/', redirectTo: ['Index'] }
                     ]);
                 }

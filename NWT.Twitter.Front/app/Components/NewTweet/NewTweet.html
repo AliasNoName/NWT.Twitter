@@ -1,7 +1,7 @@
 <div class="well new-tweet-window">
             <form class="form-horizontal" role="form">
                 <div class="form-group" style="padding:14px;">
-                    <img src="/Content/Users/User1.png" class="user-image img-from-new-tweet-window" alt="user picture" />
+                    <img src={{currentUser.imageUrl}} class="user-image img-from-new-tweet-window" alt="user picture" />
                     <input class="form-control input-from-new-tweet-window" placeholder="What's happening?" #input (keyup)="newTweetUpdate(input)">
                 </div>
                 <button class="btn btn-success pull-right" type="button" (click)="onPublish(input)">Post</button>

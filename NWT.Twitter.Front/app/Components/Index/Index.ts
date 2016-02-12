@@ -28,6 +28,7 @@ export class Index {
    public tweets: TweetModel[];
    
    private searchKey: string;
+   public tweetsFollowing: TweetModel[];
     
     constructor(data: RouteData)
     {
@@ -36,6 +37,10 @@ export class Index {
         this.tweets = data.get('tweets');
         
         this.searchKey = "";
+        this.tweetsFollowing = this.tweets.filter (
+            tweet => this.currentUser.following.find(
+                user => tweet.author == user
+                )!=null|| tweet.author == this.currentUser);
     }
     
     private onPutFavourited(favourite: TweetModel): void {
@@ -88,6 +93,7 @@ export class Index {
         
         
         this.tweets.unshift(newTweet);
+        this.tweetsFollowing.unshift(newTweet);
         this.currentUser.tweets.unshift(newTweet);
     }
 }

@@ -38,18 +38,26 @@ System.register(['angular2/core', 'angular2/router', "../TweetList/TweetsList", 
             }],
         execute: function() {
             Profile = (function () {
-                function Profile(data) {
+                function Profile(data, params) {
+                    var _this = this;
                     this.currentUser = data.get('currentUser');
                     this.hashtags = data.get('hashtags');
+                    this.users = data.get('users');
+                    this.nickname = params.get('nickname');
+                    this.isUserCurrentUser = this.nickname == this.currentUser.nickname;
+                    if (this.isUserCurrentUser)
+                        this.user = this.currentUser;
+                    else
+                        this.user = this.users.find(function (user) { return user.nickname == _this.nickname; });
                     this.searchKey = "";
                 }
                 Profile.prototype.onPutFavourited = function (favourite) {
-                    this.currentUser.favourites.push(favourite);
+                    this.user.favourites.push(favourite);
                 };
                 Profile.prototype.onRemoveFavourited = function (favourite) {
-                    var index = this.currentUser.favourites.indexOf(favourite);
+                    var index = this.user.favourites.indexOf(favourite);
                     if (index != -1) {
-                        this.currentUser.favourites.splice(index, 1);
+                        this.user.favourites.splice(index, 1);
                     }
                 };
                 Profile.prototype.onSearchKeyUpdate = function (data) {
@@ -62,7 +70,7 @@ System.register(['angular2/core', 'angular2/router', "../TweetList/TweetsList", 
                         pipes: [ContainsPipe_1.ContainsPipe],
                         templateUrl: "./app/Components/Profile/Profile.html"
                     }), 
-                    __metadata('design:paramtypes', [router_1.RouteData])
+                    __metadata('design:paramtypes', [router_1.RouteData, router_1.RouteParams])
                 ], Profile);
                 return Profile;
             })();

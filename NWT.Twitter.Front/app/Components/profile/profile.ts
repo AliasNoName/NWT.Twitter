@@ -1,6 +1,6 @@
 import {Component} from 'angular2/core'
 import {CORE_DIRECTIVES} from "angular2/common"
-import {RouteData} from 'angular2/router';
+import {RouteData, RouteParams} from 'angular2/router';
 
 import {Hashtag as HashtagModel} from "../../Model/Hashtag"
 import {Tweet as TweetModel} from "../../Model/Tweet"
@@ -24,25 +24,41 @@ import {ContainsPipe} from "../../Pipes/ContainsPipe"
 export class Profile {
    public currentUser: UserModel;
    public hashtags: HashtagModel[];
+   public users: UserModel[];
+   
+   public nickname: string;
+   public user: UserModel;
    
    private searchKey: string;
+   private isUserCurrentUser: boolean;
     
-    constructor(data: RouteData)
+    constructor(data: RouteData, params:RouteParams)
     {
         this.currentUser = data.get('currentUser');
         this.hashtags = data.get('hashtags');
+        this.users = data.get('users');
+        
+        this.nickname = params.get('nickname');
+        
+        this.isUserCurrentUser = this.nickname == this.currentUser.nickname;
+        
+        
+        if(this.isUserCurrentUser)
+            this.user= this.currentUser;
+        else
+            this.user = this.users.find(user => user.nickname == this.nickname);
         
         this.searchKey = "";
     }
 
     private onPutFavourited(favourite: TweetModel): void {
-        this.currentUser.favourites.push(favourite);
+        this.user.favourites.push(favourite);
     }
 
     private onRemoveFavourited(favourite: TweetModel): void {
-        var index = this.currentUser.favourites.indexOf(favourite);
+        var index = this.user.favourites.indexOf(favourite);
         if (index != -1) {
-            this.currentUser.favourites.splice(index, 1);
+            this.user.favourites.splice(index, 1);
         }
     }
 

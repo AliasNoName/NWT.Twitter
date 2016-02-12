@@ -19,8 +19,13 @@
         <form class="form-horizontal" role="form">
 
                 <div *ngIf="errorOccured" class="alert alert-info alert-dismissable">
-                  <a class="panel-close close" data-dismiss="alert">×</a> 
-                  {{errorText}}
+                  <a class="panel-close close" data-dismiss="alert">×</a>
+                  <label style="color:red"> {{errorText}} </label>
+                </div>
+                
+                <div *ngIf = "changesSaved" class="alert alert-info alert-dismissable">
+                      <a class="panel-close close" data-dismiss="alert">×</a> 
+                      <label style="color:green"> Changes successfully saved! </label>
                 </div>
 
                 <edit-profile-form inLabel="Name:" typeOfData= "text" (outValue) = "onNameChange($event)" [inValue]="currentUser.name" >Loading form..</edit-profile-form>
@@ -39,7 +44,6 @@
                       <input type="reset" (click)="onRest()" class="btn btn-default" value="Rest data">
                     </div>
                   </div>
-                  <label style="color:green" *ngIf = "changesSaved"> Changes successfully saved! </label>
         </form>
       </div>
       </main>

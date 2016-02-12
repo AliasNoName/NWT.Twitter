@@ -28,6 +28,7 @@ System.register(["angular2/core", "angular2/common", 'angular2/router', "../Edit
             EditProfile = (function () {
                 function EditProfile(data) {
                     this.currentUser = data.get('currentUser');
+                    this.users = data.get('users');
                     this.newData = this.currentUser;
                     this.retypedPwd = this.currentUser.password;
                     this.errorOccured = false;
@@ -55,9 +56,14 @@ System.register(["angular2/core", "angular2/common", 'angular2/router', "../Edit
                     return true;
                 };
                 EditProfile.prototype.checkNickname = function (data) {
+                    var _this = this;
                     var value = data.trim();
                     if (value == "") {
                         this.errorText = "Nickname required!";
+                        return false;
+                    }
+                    if (this.users.find(function (user) { return user.nickname == data && user != _this.currentUser; }) != null) {
+                        this.errorText = "Nickname already taken!";
                         return false;
                     }
                     return true;
