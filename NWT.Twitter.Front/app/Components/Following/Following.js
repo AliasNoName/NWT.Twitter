@@ -1,4 +1,4 @@
-System.register(['angular2/core', "angular2/common", 'angular2/router', "../Trends/Trends", "../UserInfo/UserInfo", "../UsersFollowingList/UsersFollowingList", "../Search/Search", "../../Pipes/ContainsPipeUsers"], function(exports_1) {
+System.register(['angular2/core', "angular2/common", 'angular2/router', "../Trends/Trends", "../UserInfo/UserInfo", "../UsersFollowingList/UsersFollowingList", "../Search/Search", "../../Services/TwitterService", "../../Pipes/ContainsPipeUsers"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', "angular2/common", 'angular2/router', "../Tren
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, common_1, router_1, Trends_1, UserInfo_1, UsersFollowingList_1, Search_1, ContainsPipeUsers_1;
+    var core_1, common_1, router_1, Trends_1, UserInfo_1, UsersFollowingList_1, Search_1, TwitterService_1, ContainsPipeUsers_1;
     var Following;
     return {
         setters:[
@@ -33,6 +33,9 @@ System.register(['angular2/core', "angular2/common", 'angular2/router', "../Tren
             function (Search_1_1) {
                 Search_1 = Search_1_1;
             },
+            function (TwitterService_1_1) {
+                TwitterService_1 = TwitterService_1_1;
+            },
             function (ContainsPipeUsers_1_1) {
                 ContainsPipeUsers_1 = ContainsPipeUsers_1_1;
             }],
@@ -40,13 +43,11 @@ System.register(['angular2/core', "angular2/common", 'angular2/router', "../Tren
             Following = (function () {
                 function Following(data) {
                     var _this = this;
-                    this.currentUser = data.get('currentUser');
-                    this.hashtags = data.get('hashtags');
-                    this.users = data.get('users');
+                    this.twitterService = data.get('twitterService');
                     this.searchKey = "";
                     this.notFollowing = [];
-                    this.users.forEach(function (user) {
-                        if (user != _this.currentUser && _this.currentUser.following.indexOf(user) == -1)
+                    this.twitterService.users.forEach(function (user) {
+                        if (user != _this.twitterService.currentUser && _this.twitterService.currentUser.following.indexOf(user) == -1)
                             _this.notFollowing.push(user);
                     });
                 }
@@ -55,13 +56,10 @@ System.register(['angular2/core', "angular2/common", 'angular2/router', "../Tren
                     if (index != -1) {
                         this.notFollowing.splice(index, 1);
                     }
-                    this.currentUser.following.push(user);
+                    this.twitterService.onFollow(user);
                 };
                 Following.prototype.onUnFollow = function (user) {
-                    var index = this.currentUser.following.indexOf(user);
-                    if (index != -1) {
-                        this.currentUser.following.splice(index, 1);
-                    }
+                    this.twitterService.onUnFollow(user);
                     this.notFollowing.push(user);
                 };
                 Following.prototype.onSearchKeyUpdate = function (data) {
@@ -71,6 +69,7 @@ System.register(['angular2/core', "angular2/common", 'angular2/router', "../Tren
                     core_1.Component({
                         selector: "following",
                         directives: [Trends_1.Trends, UserInfo_1.UserInfo, UsersFollowingList_1.UsersFollowingList, Search_1.Search, common_1.CORE_DIRECTIVES],
+                        providers: [TwitterService_1.TwitterService],
                         templateUrl: "./app/Components/Following/Following.html",
                         pipes: [ContainsPipeUsers_1.ContainsPipeUsers]
                     }), 

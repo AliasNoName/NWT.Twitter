@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', "../TweetList/TweetsList", "../Trends/Trends", "../UserInfo/UserInfo", "../ProfileBox/ProfileBox", "../Search/Search", "../../Pipes/ContainsPipe"], function(exports_1) {
+System.register(['angular2/core', 'angular2/router', "../TweetList/TweetsList", "../Trends/Trends", "../UserInfo/UserInfo", "../ProfileBox/ProfileBox", "../Search/Search", "../../Services/TwitterService", "../../Pipes/ContainsPipe"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', 'angular2/router', "../TweetList/TweetsList", 
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, TweetsList_1, Trends_1, UserInfo_1, ProfileBox_1, Search_1, ContainsPipe_1;
+    var core_1, router_1, TweetsList_1, Trends_1, UserInfo_1, ProfileBox_1, Search_1, TwitterService_1, ContainsPipe_1;
     var Profile;
     return {
         setters:[
@@ -33,6 +33,9 @@ System.register(['angular2/core', 'angular2/router', "../TweetList/TweetsList", 
             function (Search_1_1) {
                 Search_1 = Search_1_1;
             },
+            function (TwitterService_1_1) {
+                TwitterService_1 = TwitterService_1_1;
+            },
             function (ContainsPipe_1_1) {
                 ContainsPipe_1 = ContainsPipe_1_1;
             }],
@@ -40,25 +43,20 @@ System.register(['angular2/core', 'angular2/router', "../TweetList/TweetsList", 
             Profile = (function () {
                 function Profile(data, params) {
                     var _this = this;
-                    this.currentUser = data.get('currentUser');
-                    this.hashtags = data.get('hashtags');
-                    this.users = data.get('users');
+                    this.twitterService = data.get('twitterService');
                     this.nickname = params.get('nickname');
-                    this.isUserCurrentUser = this.nickname == this.currentUser.nickname;
+                    this.isUserCurrentUser = this.nickname == this.twitterService.currentUser.nickname;
                     if (this.isUserCurrentUser)
-                        this.user = this.currentUser;
+                        this.user = this.twitterService.currentUser;
                     else
-                        this.user = this.users.find(function (user) { return user.nickname == _this.nickname; });
+                        this.user = this.twitterService.users.find(function (user) { return user.nickname == _this.nickname; });
                     this.searchKey = "";
                 }
                 Profile.prototype.onPutFavourited = function (favourite) {
-                    this.user.favourites.push(favourite);
+                    this.twitterService.onPutFavourited(favourite);
                 };
                 Profile.prototype.onRemoveFavourited = function (favourite) {
-                    var index = this.user.favourites.indexOf(favourite);
-                    if (index != -1) {
-                        this.user.favourites.splice(index, 1);
-                    }
+                    this.twitterService.onRemoveFavourited(favourite);
                 };
                 Profile.prototype.onSearchKeyUpdate = function (data) {
                     this.searchKey = data;
@@ -67,6 +65,7 @@ System.register(['angular2/core', 'angular2/router', "../TweetList/TweetsList", 
                     core_1.Component({
                         selector: "profile",
                         directives: [TweetsList_1.TweetsList, Trends_1.Trends, UserInfo_1.UserInfo, ProfileBox_1.ProfileBox, Search_1.Search],
+                        providers: [TwitterService_1.TwitterService],
                         pipes: [ContainsPipe_1.ContainsPipe],
                         templateUrl: "./app/Components/Profile/Profile.html"
                     }), 

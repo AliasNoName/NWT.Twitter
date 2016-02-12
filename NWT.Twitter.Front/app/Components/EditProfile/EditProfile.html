@@ -3,7 +3,7 @@
 	<aside id="user-panel-container">
         <br/><br/><br/><br/>
         <div class="text-center">
-          <img src={{currentUser.imageUrl}} class="avatar edit-profile-image" alt="user picture"/>
+          <img src={{twitterService.currentUser.imageUrl}} class="avatar edit-profile-image" alt="user picture"/>
           <h6>Upload a different photo?</h6>
           <span class="btn btn-default btn-file">
             Browse <input type="file" (change)="imageChange($event)">
@@ -28,11 +28,11 @@
                       <label style="color:green"> Changes successfully saved! </label>
                 </div>
 
-                <edit-profile-form inLabel="Name:" typeOfData= "text" (outValue) = "onNameChange($event)" [inValue]="currentUser.name" >Loading form..</edit-profile-form>
-                <edit-profile-form inLabel="Last Name:" typeOfData= "text" (outValue) = "onLastNameChange($event)" [inValue]="currentUser.lastname" >Loading form..</edit-profile-form>
-                <edit-profile-form inLabel="Nickname:" typeOfData= "text" (outValue) = "onNicknameChange($event)" [inValue]="currentUser.nickname" >Loading form..</edit-profile-form>
-                <edit-profile-form inLabel="E-mail:" typeOfData= "email" (outValue) = "onEmailChange($event)" [inValue]="currentUser.email" >Loading form..</edit-profile-form>
-                <edit-profile-form inLabel="Password:" typeOfData= "password" (outValue) = "onPasswordChange($event)" [inValue]="currentUser.password" >Loading form..</edit-profile-form>
+                <edit-profile-form inLabel="Name:" typeOfData= "text" (outValue) = "onNameChange($event)" [inValue]="twitterService.currentUser.name" >Loading form..</edit-profile-form>
+                <edit-profile-form inLabel="Last Name:" typeOfData= "text" (outValue) = "onLastNameChange($event)" [inValue]="twitterService.currentUser.lastname" >Loading form..</edit-profile-form>
+                <edit-profile-form inLabel="Nickname:" typeOfData= "text" (outValue) = "onNicknameChange($event)" [inValue]="twitterService.currentUser.nickname" >Loading form..</edit-profile-form>
+                <edit-profile-form inLabel="E-mail:" typeOfData= "email" (outValue) = "onEmailChange($event)" [inValue]="twitterService.currentUser.email" >Loading form..</edit-profile-form>
+                <edit-profile-form inLabel="Password:" typeOfData= "password" (outValue) = "onPasswordChange($event)" [inValue]="twitterService.currentUser.password" >Loading form..</edit-profile-form>
                 <edit-profile-form inLabel="Confirm password:" typeOfData= "password" (outValue) = "onRepeatPasswordChange($event)" [inValue]="retypedPwd" >Loading form..</edit-profile-form>
 
 

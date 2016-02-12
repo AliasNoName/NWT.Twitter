@@ -1,45 +1,39 @@
-import {Component, View} from "angular2/core"
+import {Component} from "angular2/core"
 import {RouteData} from "angular2/router"
 
-import {Hashtag as HashtagModel} from "../../Model/Hashtag"
 import {Tweet as TweetModel} from "../../Model/Tweet"
-import {User as UserModel} from "../../Model/User"
-import {Comment as CommentModel} from "../../Model/Comment"
+
 import {TweetsList} from "../TweetList/TweetsList"
 import {Trends} from "../Trends/Trends"
 import {UserInfo} from "../UserInfo/UserInfo"
 import {Search} from "../Search/Search"
+
+import {TwitterService} from "../../Services/TwitterService"
 import {ContainsPipe} from "../../Pipes/ContainsPipe"
 
 
 @Component({
-    selector: "favourites"
-})
-
-@View({
-        directives: [TweetsList, Trends, UserInfo, Search],
-        pipes: [ContainsPipe],
+    selector: "favourites",
+    directives: [TweetsList, Trends, UserInfo, Search],
+    pipes: [ContainsPipe],
+    providers: [TwitterService],
     templateUrl: "./app/Components/Favourites/Favourites.html"
 })
 
 export class Favourites {
-    public hashtags: HashtagModel[];
-    public tweets: TweetModel[];
-    public currentUser: UserModel;
+    private twitterService: TwitterService;
     
     public notFavourited: TweetModel[];
     private searchKey: string;
 
     constructor(data: RouteData){
-        this.currentUser = data.get('currentUser');
-        this.hashtags = data.get('hashtags');
-        this.tweets = data.get('tweets');
+        this.twitterService = data.get('twitterService');
 
         this.searchKey = "";
         this.notFavourited = [];
 
-        this.tweets.forEach(tweet=> {
-            if (this.currentUser.favourites.indexOf(tweet) == -1)
+        this.twitterService.tweets.forEach(tweet=> {
+            if (this.twitterService.currentUser.favourites.indexOf(tweet) == -1)
                 this.notFavourited.push(tweet);
         });
     }
@@ -49,14 +43,11 @@ export class Favourites {
         if (index != -1) {
             this.notFavourited.splice(index, 1);
         }
-        this.currentUser.favourites.push(favourite);
+        this.twitterService.onPutFavourited(favourite);
     }
 
     private onRemoveFavourited(favourite: TweetModel): void {
-        var index = this.currentUser.favourites.indexOf(favourite);
-        if (index != -1) {
-            this.currentUser.favourites.splice(index, 1);
-        }
+        this.twitterService.onRemoveFavourited(favourite);
         this.notFavourited.push(favourite);
     }
 

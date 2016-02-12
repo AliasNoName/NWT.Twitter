@@ -1,4 +1,4 @@
-import {Component, View} from "angular2/core"
+import {Component} from "angular2/core"
 import {CORE_DIRECTIVES} from "angular2/common"
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 
@@ -17,6 +17,6 @@ import {Hashtag as HashtagModel} from "../../Model/Hashtag"
     </div>`
 })
 
-export class Trends {
+export class Trends{
     public hashtags: HashtagModel[]; 
 }

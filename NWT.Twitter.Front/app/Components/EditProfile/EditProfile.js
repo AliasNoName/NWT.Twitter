@@ -1,4 +1,4 @@
-System.register(["angular2/core", "angular2/common", 'angular2/router', "../EditProfileForm/EditProfileForm"], function(exports_1) {
+System.register(["angular2/core", "angular2/common", 'angular2/router', "../../Model/User", "../EditProfileForm/EditProfileForm", "../../Services/TwitterService"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(["angular2/core", "angular2/common", 'angular2/router', "../Edit
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, common_1, router_1, EditProfileForm_1;
+    var core_1, common_1, router_1, User_1, EditProfileForm_1, TwitterService_1;
     var EditProfile;
     return {
         setters:[
@@ -21,22 +21,28 @@ System.register(["angular2/core", "angular2/common", 'angular2/router', "../Edit
             function (router_1_1) {
                 router_1 = router_1_1;
             },
+            function (User_1_1) {
+                User_1 = User_1_1;
+            },
             function (EditProfileForm_1_1) {
                 EditProfileForm_1 = EditProfileForm_1_1;
+            },
+            function (TwitterService_1_1) {
+                TwitterService_1 = TwitterService_1_1;
             }],
         execute: function() {
             EditProfile = (function () {
                 function EditProfile(data) {
-                    this.currentUser = data.get('currentUser');
-                    this.users = data.get('users');
-                    this.newData = this.currentUser;
-                    this.retypedPwd = this.currentUser.password;
+                    this.twitterService = data.get('twitterService');
+                    this.newData = new User_1.User(this.twitterService.currentUser.name, this.twitterService.currentUser.lastname, this.twitterService.currentUser.nickname, this.twitterService.currentUser.email, this.twitterService.currentUser.password, this.twitterService.currentUser.imageUrl, this.twitterService.currentUser.tweets, this.twitterService.currentUser.following, this.twitterService.currentUser.favourites);
+                    this.retypedPwd = this.twitterService.currentUser.password;
                     this.errorOccured = false;
                     this.errorText = "";
                     this.changesSaved = false;
                 }
                 EditProfile.prototype.imageChange = function (inputValue) {
-                    this.currentUser.imageUrl = URL.createObjectURL(inputValue.target.files[0]);
+                    this.twitterService.onCurrentUserImageChange(inputValue);
+                    this.newData.imageUrl = URL.createObjectURL(inputValue.target.files[0]);
                     this.changesSaved = false;
                 };
                 EditProfile.prototype.checkName = function (data) {
@@ -62,7 +68,7 @@ System.register(["angular2/core", "angular2/common", 'angular2/router', "../Edit
                         this.errorText = "Nickname required!";
                         return false;
                     }
-                    if (this.users.find(function (user) { return user.nickname == data && user != _this.currentUser; }) != null) {
+                    if (this.twitterService.users.find(function (user) { return user.nickname == data && user != _this.twitterService.currentUser; }) != null) {
                         this.errorText = "Nickname already taken!";
                         return false;
                     }
@@ -139,7 +145,7 @@ System.register(["angular2/core", "angular2/common", 'angular2/router', "../Edit
                         && this.checkRepeatedPassword(this.retypedPwd, this.newData.password)) {
                         this.errorText = " ";
                         this.errorOccured = false;
-                        this.currentUser = this.newData;
+                        this.twitterService.onUserDataChange(this.newData);
                         this.changesSaved = true;
                     }
                     else
@@ -156,6 +162,7 @@ System.register(["angular2/core", "angular2/common", 'angular2/router', "../Edit
                     core_1.Component({
                         selector: "edit-profile",
                         directives: [EditProfileForm_1.EditProfileForm, common_1.CORE_DIRECTIVES],
+                        providers: [TwitterService_1.TwitterService],
                         templateUrl: "./app/Components/EditProfile/EditProfile.html"
                     }), 
                     __metadata('design:paramtypes', [router_1.RouteData])

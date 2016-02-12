@@ -1,4 +1,4 @@
-System.register(["angular2/core", "angular2/router", "../TweetList/TweetsList", "../Trends/Trends", "../UserInfo/UserInfo", "../Search/Search", "../../Pipes/ContainsPipe"], function(exports_1) {
+System.register(["angular2/core", "angular2/router", "../TweetList/TweetsList", "../Trends/Trends", "../UserInfo/UserInfo", "../Search/Search", "../../Services/TwitterService", "../../Pipes/ContainsPipe"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(["angular2/core", "angular2/router", "../TweetList/TweetsList", 
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, TweetsList_1, Trends_1, UserInfo_1, Search_1, ContainsPipe_1;
+    var core_1, router_1, TweetsList_1, Trends_1, UserInfo_1, Search_1, TwitterService_1, ContainsPipe_1;
     var Favourites;
     return {
         setters:[
@@ -30,6 +30,9 @@ System.register(["angular2/core", "angular2/router", "../TweetList/TweetsList", 
             function (Search_1_1) {
                 Search_1 = Search_1_1;
             },
+            function (TwitterService_1_1) {
+                TwitterService_1 = TwitterService_1_1;
+            },
             function (ContainsPipe_1_1) {
                 ContainsPipe_1 = ContainsPipe_1_1;
             }],
@@ -37,13 +40,11 @@ System.register(["angular2/core", "angular2/router", "../TweetList/TweetsList", 
             Favourites = (function () {
                 function Favourites(data) {
                     var _this = this;
-                    this.currentUser = data.get('currentUser');
-                    this.hashtags = data.get('hashtags');
-                    this.tweets = data.get('tweets');
+                    this.twitterService = data.get('twitterService');
                     this.searchKey = "";
                     this.notFavourited = [];
-                    this.tweets.forEach(function (tweet) {
-                        if (_this.currentUser.favourites.indexOf(tweet) == -1)
+                    this.twitterService.tweets.forEach(function (tweet) {
+                        if (_this.twitterService.currentUser.favourites.indexOf(tweet) == -1)
                             _this.notFavourited.push(tweet);
                     });
                 }
@@ -52,13 +53,10 @@ System.register(["angular2/core", "angular2/router", "../TweetList/TweetsList", 
                     if (index != -1) {
                         this.notFavourited.splice(index, 1);
                     }
-                    this.currentUser.favourites.push(favourite);
+                    this.twitterService.onPutFavourited(favourite);
                 };
                 Favourites.prototype.onRemoveFavourited = function (favourite) {
-                    var index = this.currentUser.favourites.indexOf(favourite);
-                    if (index != -1) {
-                        this.currentUser.favourites.splice(index, 1);
-                    }
+                    this.twitterService.onRemoveFavourited(favourite);
                     this.notFavourited.push(favourite);
                 };
                 Favourites.prototype.onSearchKeyUpdate = function (data) {
@@ -66,11 +64,10 @@ System.register(["angular2/core", "angular2/router", "../TweetList/TweetsList", 
                 };
                 Favourites = __decorate([
                     core_1.Component({
-                        selector: "favourites"
-                    }),
-                    core_1.View({
+                        selector: "favourites",
                         directives: [TweetsList_1.TweetsList, Trends_1.Trends, UserInfo_1.UserInfo, Search_1.Search],
                         pipes: [ContainsPipe_1.ContainsPipe],
+                        providers: [TwitterService_1.TwitterService],
                         templateUrl: "./app/Components/Favourites/Favourites.html"
                     }), 
                     __metadata('design:paramtypes', [router_1.RouteData])

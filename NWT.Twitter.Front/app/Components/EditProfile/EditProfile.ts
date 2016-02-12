@@ -6,16 +6,18 @@ import {Profile} from  '../Profile/Profile';
 import {User as UserModel} from "../../Model/User"
 import {EditProfileForm} from "../EditProfileForm/EditProfileForm"
 
+import {TwitterService} from "../../Services/TwitterService"
+
 
 @Component({
     selector: "edit-profile",
     directives: [EditProfileForm, CORE_DIRECTIVES],
+    providers: [TwitterService],
     templateUrl: "./app/Components/EditProfile/EditProfile.html"
 })
 
 export class EditProfile {
-    public currentUser: UserModel;
-    public users: UserModel[];
+    private twitterService: TwitterService;
    
     public newData: UserModel;
     public errorOccured: boolean;
@@ -25,22 +27,21 @@ export class EditProfile {
     
     constructor(data: RouteData)
     {
-        this.currentUser = data.get('currentUser');
-        this.users = data.get('users');
+        this.twitterService = data.get('twitterService');
         
-        this.newData = this.currentUser;
-        this.retypedPwd = this.currentUser.password;
+        this.newData = new UserModel(this.twitterService.currentUser.name, this.twitterService.currentUser.lastname, this.twitterService.currentUser.nickname, this.twitterService.currentUser.email, this.twitterService.currentUser.password, this.twitterService.currentUser.imageUrl, this.twitterService.currentUser.tweets, this.twitterService.currentUser.following, this.twitterService.currentUser.favourites);
+        
+        this.retypedPwd = this.twitterService.currentUser.password;
         this.errorOccured = false;
         this.errorText = "";
         this.changesSaved = false;
     }
 
     private imageChange(inputValue: any): void {
-        this.currentUser.imageUrl = URL.createObjectURL(inputValue.target.files[0]);
+        this.twitterService.onCurrentUserImageChange(inputValue);
+        this.newData.imageUrl = URL.createObjectURL(inputValue.target.files[0]);
         this.changesSaved = false;
     }
-
-     
 
     private checkName(data: string): boolean {
         var value = data.trim();
@@ -66,7 +67,7 @@ export class EditProfile {
             this.errorText = "Nickname required!";
             return false;
         }
-        if(this.users.find(user=>user.nickname==data&&user!=this.currentUser)!=null)
+        if(this.twitterService.users.find(user=>user.nickname==data&&user!=this.twitterService.currentUser)!=null)
         {
             this.errorText = "Nickname already taken!";
             return false;
@@ -118,7 +119,6 @@ export class EditProfile {
     private onNameChange(data: string) {
         this.newData.name = data;
         this.changesSaved = false;
-
     }
 
     private onLastNameChange(data: string) {
@@ -155,7 +155,7 @@ export class EditProfile {
             && this.checkRepeatedPassword(this.retypedPwd, this.newData.password)) {
             this.errorText = " ";
             this.errorOccured = false;
-            this.currentUser = this.newData;
+            this.twitterService.onUserDataChange(this.newData);
             this.changesSaved = true;
         }
         else

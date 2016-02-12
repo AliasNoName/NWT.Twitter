@@ -1,16 +1,16 @@
 <main>
 
     <aside id="user-panel-container">
-        <user-info [user] = "currentUser" >Loading user info..</user-info>
+        <user-info [user] = "twitterService.currentUser" >Loading user info..</user-info>
         <search (searchData)="onSearchKeyUpdate($event)">Loading search bar..</search>
         <br/>
-        <trends [hashtags]="hashtags" >Loading list..</trends>
+        <trends [hashtags]="twitterService.hashtags" >Loading list..</trends>
         
     </aside>
 
     <div id="main-content-container" class="panel">
-        <new-tweet [currentUser]="currentUser" (publish)="onNewTweetPublish($event)">Loading new tweet window..</new-tweet>
-        <tweets-list [tweets]="tweetsFollowing|contains:searchKey" [currentUser]="currentUser" (putFavourited)="onPutFavourited($event)"  (removeFavourited)="onRemoveFavourited($event)">Loading Users Tweets..</tweets-list>
+        <new-tweet [currentUser]="twitterService.currentUser" (publish)="onNewTweetPublish($event)">Loading new tweet window..</new-tweet>
+        <tweets-list [tweets]="tweetsFollowing|contains:searchKey" [currentUser]="twitterService.currentUser" (putFavourited)="onPutFavourited($event)"  (removeFavourited)="onRemoveFavourited($event)">Loading Users Tweets..</tweets-list>
     </div>
 
 </main>
