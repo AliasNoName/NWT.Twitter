@@ -1,0 +1,9 @@
+<div class="panel panel-default comment">
+      <div class="panel-body">
+      <img src={{comment.author.imageUrl}} class="comment-user-image" alt="user picture" />
+      <div class="comment-data">
+             <a [routerLink]="['Following']"> <label>{{comment.author.getFullName()}}</label></a>  @{{comment.author.nickname}}
+             <div class="comment-text">{{comment.data}}
+                </div>      
+      </div>
+</div>

@@ -1,0 +1,9 @@
+<div class="well new-comment-window">
+      <div class="panel-body">
+      <ul class="new-comment-window-data form-inline">
+          <li><img src={{currentUser.imageUrl}} class="comment-window-user-image" alt="user picture" /></li>
+            <li> <input class="form-control input-from-new-comment-window" placeholder="Leave your comment" #input (keyup)="newcommentUpdate(input)"></li>
+             <li><button class="btn btn-success pull-right" type="button" (click)="onPublish(input)">Post</button></li>
+        </ul>      
+      </div>
+</div>
