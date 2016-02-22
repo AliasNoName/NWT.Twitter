@@ -10,8 +10,10 @@ namespace NWT.Twitter.API.Models
     public class Tweet
     {
         public int ID { get; set; }
+
+        [StringLength(140, MinimumLength = 1)]
         public string Text { get; set; }
-        [ForeignKey("FK_Tweet.Author")]
+        [ForeignKey("User")]
         public int UserID { get; set; }
 
         public virtual User User { get; set; }

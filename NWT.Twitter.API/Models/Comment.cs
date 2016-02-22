@@ -11,9 +11,9 @@ namespace NWT.Twitter.API.Models
         public int ID { get; set; }
         public string Text { get; set; }
 
-        [ForeignKey("FK_Comment.Tweet")]
+        [ForeignKey("Tweet")]
         public int TweetID { get; set; }
-        [ForeignKey("FK_Comment.Author")]
+        [ForeignKey("User")]
         public int UserID { get; set; }
 
         public virtual User User { get; set; }

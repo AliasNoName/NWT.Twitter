@@ -15,7 +15,7 @@ namespace NWT.Twitter.API.Models
         public string LastName { get; set; }
         public string ImageUrl { get; set; }
 
-        [ForeignKey("FK_User.Location")]
+        [ForeignKey("Location")]
         public int LocationID { get; set; }
 
 
@@ -23,8 +23,9 @@ namespace NWT.Twitter.API.Models
         public virtual ICollection<Tweet> Tweets { get; set; }
         public virtual ICollection<Comment> Comments { get; set; } 
 
+
         //Tweet favourited by User
-        public virtual ICollection<Tweet> FavouritedTweets { get; set; } 
+        public ICollection<Tweet> FavouritedTweets { get; set; } 
         //Users followed by User
         public virtual ICollection<User> FollowedUsers { get; set; } 
     }
