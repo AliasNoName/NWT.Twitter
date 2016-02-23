@@ -49,7 +49,7 @@ namespace NWT.Twitter.API.DAL
 
             var comments = new List<Comment>
             {
-                new Comment {Text = "Jel ovo radi?", TweetID = 2}
+                new Comment {Text = "Jel ovo radi?", TweetID = 2, UserID = 1}
             };
             comments.ForEach(c => context.Comments.Add(c));
             context.SaveChanges();

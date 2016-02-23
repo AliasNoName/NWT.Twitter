@@ -28,6 +28,10 @@ namespace NWT.Twitter.API.DAL
                 .HasMany(t => t.FavouritedByUsers).WithMany(u => u.FavouritedTweets)
                 .Map(f => f.MapLeftKey("TweetId").MapRightKey("UserId")
                     .ToTable("TweetFavouritedByUsers"));
+            modelBuilder.Entity<Tweet>()
+                .HasRequired(t => t.User)
+                .WithMany()
+                .WillCascadeOnDelete(false);
         }
     }
 }
