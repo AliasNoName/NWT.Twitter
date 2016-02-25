@@ -7,7 +7,7 @@ using NWT.Twitter.API.Models;
 
 namespace NWT.Twitter.API.DAL
 {
-    public class TwitterInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<TwitterContext>
+    public class TwitterInitializer : System.Data.Entity.DropCreateDatabaseAlways<TwitterContext>
     {
         protected override void Seed(TwitterContext context)
         {

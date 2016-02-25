@@ -16,7 +16,7 @@ namespace NWT.Twitter.API.Models
         public string ImageUrl { get; set; }
 
         [ForeignKey("Location")]
-        public int LocationID { get; set; }
+        public int? LocationID { get; set; }
 
 
         public virtual Location Location { get; set; }
