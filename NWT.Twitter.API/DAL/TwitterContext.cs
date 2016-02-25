@@ -6,10 +6,11 @@ using NWT.Twitter.API.Models;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace NWT.Twitter.API.DAL
 {
-    public class TwitterContext : DbContext
+    public class TwitterContext : IdentityDbContext
     {
         public TwitterContext() : base("TwitterContext")
         {
@@ -30,7 +31,15 @@ namespace NWT.Twitter.API.DAL
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-         
+
+            modelBuilder.Entity<IdentityUserRole>()
+            .HasKey(r => new { r.UserId, r.RoleId })
+            .ToTable("AspNetUserRoles");
+
+            modelBuilder.Entity<IdentityUserLogin>()
+                .HasKey(l => new { l.LoginProvider, l.ProviderKey, l.UserId })
+                .ToTable("AspNetUserLogins");
+
             modelBuilder.Entity<Tweet>()
                 .HasMany(t => t.FavouritedByUsers)
                 .WithMany(u => u.FavouritedTweets)

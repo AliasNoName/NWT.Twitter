@@ -14,7 +14,7 @@ namespace NWT.Twitter.API.Models
         [StringLength(140, MinimumLength = 1)]
         public string Text { get; set; }
         [ForeignKey("User")]
-        public int UserID { get; set; }
+        public string UserID { get; set; }
 
         public virtual User User { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }

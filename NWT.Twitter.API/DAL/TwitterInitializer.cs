@@ -7,7 +7,7 @@ using NWT.Twitter.API.Models;
 
 namespace NWT.Twitter.API.DAL
 {
-    public class TwitterInitializer : System.Data.Entity.DropCreateDatabaseAlways<TwitterContext>
+    public class TwitterInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<TwitterContext>
     {
         protected override void Seed(TwitterContext context)
         {
@@ -23,19 +23,19 @@ namespace NWT.Twitter.API.DAL
 
             var users = new List<User>
             {
-                new User { Username = "userNumber1", FirstName = "User", LastName = "NumberOne", ImageUrl = "http://i.imgur.com/T85KFa1.jpg", LocationID = 2, FollowedUsers = new List<User>()},
-                new User { Username = "someNumber2", FirstName = "Some", LastName = "NumberTwo", ImageUrl = "http://i.imgur.com/oDkZmVC.jpg", LocationID = 2, FollowedUsers = new List<User>()},
-                new User { Username = "useWords3", FirstName = "Usage", LastName = "WordsThree", ImageUrl = "http://i.imgur.com/BSa65e1.jpg", LocationID = 2, FollowedUsers = new List<User>()},
-                new User { Username = "doHomeWork4", FirstName = "Dohome", LastName = "WorkFour", ImageUrl = "http://images.wookmark.com/ffffound-this-guys-profile-pic-really-wookmark-177955.jpg", LocationID = 2, FollowedUsers = new List<User>()},
+                new User { UserName = "userNumber1", FirstName = "User", LastName = "NumberOne", ImageUrl = "http://i.imgur.com/T85KFa1.jpg", LocationID = 2, FollowedUsers = new List<User>()},
+                new User { UserName = "someNumber2", FirstName = "Some", LastName = "NumberTwo", ImageUrl = "http://i.imgur.com/oDkZmVC.jpg", LocationID = 2, FollowedUsers = new List<User>()},
+                new User { UserName = "useWords3", FirstName = "Usage", LastName = "WordsThree", ImageUrl = "http://i.imgur.com/BSa65e1.jpg", LocationID = 2, FollowedUsers = new List<User>()},
+                new User { UserName = "doHomeWork4", FirstName = "Dohome", LastName = "WorkFour", ImageUrl = "http://images.wookmark.com/ffffound-this-guys-profile-pic-really-wookmark-177955.jpg", LocationID = 2, FollowedUsers = new List<User>()},
             };
             users.ForEach(u=> context.Users.Add(u));
             context.SaveChanges();
 
             var tweets = new List<Tweet>
             {
-                new Tweet { Text = "Prvi tweet korsniku jedan", UserID = 2, FavouritedByUsers = new List<User>()},
-                new Tweet { Text = "Prvo korištenje #hastagRijec , jel valja?", UserID = 3, FavouritedByUsers = new List<User>()},
-                new Tweet { Text = "Shareaj, lajkaj podijeli, ionako ne radi :D", UserID = 1, FavouritedByUsers = new List<User>()}
+                new Tweet { Text = "Prvi tweet korsniku jedan", UserID = context.Users.First().Id, FavouritedByUsers = new List<User>()},
+                new Tweet { Text = "Prvo korištenje #hastagRijec , jel valja?", UserID = context.Users.ToList()[2].Id, FavouritedByUsers = new List<User>()},
+                new Tweet { Text = "Shareaj, lajkaj podijeli, ionako ne radi :D", UserID = context.Users.ToList()[3].Id, FavouritedByUsers = new List<User>()}
             };
             tweets.ForEach(t => context.Tweets.Add(t));
             context.SaveChanges();
@@ -49,7 +49,7 @@ namespace NWT.Twitter.API.DAL
 
             var comments = new List<Comment>
             {
-                new Comment {Text = "Jel ovo radi?", TweetID = 2, UserID = 1}
+                new Comment {Text = "Jel ovo radi?", TweetID = 2, UserID = context.Users.First().Id}
             };
             comments.ForEach(c => context.Comments.Add(c));
             context.SaveChanges();
