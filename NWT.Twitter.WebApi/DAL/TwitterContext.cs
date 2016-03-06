@@ -13,6 +13,8 @@ namespace NWT.Twitter.WebApi.DAL
     {
         public TwitterContext() : base("TwitterContext")
         {
+            Configuration.ProxyCreationEnabled = false;
+            Configuration.LazyLoadingEnabled = true;
         }
 
         public DbSet<Location> Locations { get; set; }
@@ -54,6 +56,13 @@ namespace NWT.Twitter.WebApi.DAL
                     .MapRightKey("TweetId")
                     .ToTable("HashtagTweets"));
 
+            modelBuilder.Entity<User>()
+                .HasMany(user => user.FollowedUsers)
+                .WithMany(followedUsers => followedUsers.FollowedByUsers)
+                .Map(userFollowers => userFollowers
+                    .MapLeftKey("FollowedUserId")
+                    .MapRightKey("UserId")
+                    .ToTable("UserFollowsUser"));
 
         }
     }

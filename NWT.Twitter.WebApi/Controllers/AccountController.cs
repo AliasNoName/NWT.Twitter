@@ -41,7 +41,7 @@ namespace NWT.Twitter.WebApi.Controllers
                 ImageUrl = registerDto.ImageUrl
             };
 
-            var result = _repo.RegisterUser(newUser);
+            var result = _repo.RegisterUser(newUser,registerDto.Password);
 
             return (result.Succeeded) ? (IHttpActionResult) Created("Register", newUser) : InternalServerError();
         }

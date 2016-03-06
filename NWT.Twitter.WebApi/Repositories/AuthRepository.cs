@@ -20,9 +20,9 @@ namespace NWT.Twitter.WebApi.Repositories
             _userManager = new UserManager<User>(new UserStore<User>(_context));
         }
 
-        public IdentityResult RegisterUser(User user)
+        public IdentityResult RegisterUser(User user, string password)
         {
-            var result = _userManager.Create(user);
+            var result = _userManager.Create(user, password);
             return result;
         }
 

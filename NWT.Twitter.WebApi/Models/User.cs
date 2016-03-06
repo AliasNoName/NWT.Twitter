@@ -26,6 +26,8 @@ namespace NWT.Twitter.WebApi.Models
         //Tweet favourited by User
         public ICollection<Tweet> FavouritedTweets { get; set; } 
         //Users followed by User
-        public virtual ICollection<User> FollowedUsers { get; set; } 
+        public virtual ICollection<User> FollowedUsers { get; set; }
+        //User that are following User
+        public virtual ICollection<User> FollowedByUsers { get; set; } 
     }
 }

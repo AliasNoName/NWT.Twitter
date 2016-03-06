@@ -24,6 +24,10 @@ namespace NWT.Twitter.WebApi
 
             var jsonFormatters = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
             jsonFormatters.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            jsonFormatters.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
+            jsonFormatters.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+
         }
     }
 }
