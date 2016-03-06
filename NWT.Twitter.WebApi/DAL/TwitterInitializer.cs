@@ -34,21 +34,23 @@ namespace NWT.Twitter.WebApi.DAL
             users.ForEach(u => userManager.Create(u, "Password123."));
 
             var fUsers = context.Users.ToList();
-            fUsers[0].FollowedUsers.Add(fUsers[1]);
-            fUsers[0].FollowedUsers.Add(fUsers[2]);
-            fUsers[0].FollowedUsers.Add(fUsers[3]);
+            fUsers.Single(f => f.UserName == "userNumber1") .FollowedUsers.Add(fUsers.Single(f => f.UserName == "someNumber2"));
+            fUsers.Single(f => f.UserName == "userNumber1") .FollowedUsers.Add(fUsers.Single(f => f.UserName == "useWords3"));
+            fUsers.Single(f => f.UserName == "userNumber1") .FollowedUsers.Add(fUsers.Single(f => f.UserName == "doHomeWork4"));
+            /*
+            fUsers.Single(f => f.UserName == "someNumber2") .FollowedUsers.Add(fUsers.Single(f => f.UserName == "userNumber1"));
+            fUsers.Single(f => f.UserName == "someNumber2") .FollowedUsers.Add(fUsers.Single(f => f.UserName == "useWords3"));
+            fUsers.Single(f => f.UserName == "someNumber2") .FollowedUsers.Add(fUsers.Single(f => f.UserName == "doHomeWork4"));
+            */
+            fUsers.Single(f => f.UserName == "useWords3")   .FollowedUsers.Add(fUsers.Single(f => f.UserName == "userNumber1"));
+            fUsers.Single(f => f.UserName == "useWords3")   .FollowedUsers.Add(fUsers.Single(f => f.UserName == "someNumber2"));
+            fUsers.Single(f => f.UserName == "useWords3")   .FollowedUsers.Add(fUsers.Single(f => f.UserName == "doHomeWork4"));
 
-            fUsers[1].FollowedUsers.Add(fUsers[0]);
-            fUsers[1].FollowedUsers.Add(fUsers[2]);
-
-            fUsers[2].FollowedUsers.Add(fUsers[1]);
-            fUsers[2].FollowedUsers.Add(fUsers[0]);
-            fUsers[2].FollowedUsers.Add(fUsers[3]);
-
-            fUsers[3].FollowedUsers.Add(fUsers[1]);
-            fUsers[3].FollowedUsers.Add(fUsers[2]);
-            fUsers[3].FollowedUsers.Add(fUsers[0]);
-
+            fUsers.Single(f => f.UserName == "doHomeWork4") .FollowedUsers.Add(fUsers.Single(f => f.UserName == "userNumber1"));
+            fUsers.Single(f => f.UserName == "doHomeWork4") .FollowedUsers.Add(fUsers.Single(f => f.UserName == "useWords3"));
+            fUsers.Single(f => f.UserName == "doHomeWork4") .FollowedUsers.Add(fUsers.Single(f => f.UserName == "someNumber2"));
+            //fUsers[2].FollowedUsers.Add(fUsers[0]);
+            //fUsers[2].FollowedUsers.Add(fUsers[3]);
             context.SaveChanges();
 
 

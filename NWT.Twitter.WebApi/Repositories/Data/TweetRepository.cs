@@ -17,19 +17,12 @@ namespace NWT.Twitter.WebApi.Repositories.Data
             {
                 try
                 {
-                    var user = context.Users.SingleOrDefault(u => u.UserName == userName);
-                    var sql_followedUsers = @"Select [FollowedUserId] from [UserFollowsUser] 
-                                                Where [UserId] = {0}";
-                    var usersFollowingId = context.Database
-                        .SqlQuery<string>(sql_followedUsers, user.Id).ToList();
-                    
-                    usersFollowingId.Add(user.Id);
-
+                    var usersFollowingId = GetAllFollowedUsers(userName);
                     if (usersFollowingId.Count == 0)
                     {
                         throw new NullReferenceException("Error when getting followed users");
                     }
-                    var tweets = context.Tweets.Where(t => usersFollowingId.Contains(t.UserID)).ToList();
+                    var tweets = context.Tweets.Where(t => usersFollowingId.Any(u => u == t.UserID)).ToList();
                     return tweets;
                 }
                 catch (Exception e)
@@ -43,28 +36,43 @@ namespace NWT.Twitter.WebApi.Repositories.Data
         {
             using (var context = new TwitterContext())
             {
-                var tweet = context.Tweets.Single
-                    (t => t.ID == tweetId);
                 try
                 {
-                    var user = context.Users.Single(u => u.UserName == userName);
-                    var usersFollowing = user.FollowedUsers.ToList();
-                    usersFollowing.Add(user);
-
-                    if (usersFollowing.Any(u => u.Id == tweet.UserID))
+                    var tweet = context.Tweets.SingleOrDefault(t => t.ID == tweetId);
+                    var usersFollowing = GetAllFollowedUsers(userName);
+                    if (usersFollowing.Contains(tweet.UserID))
                     {
                         return tweet;
                     }
                     else
                     {
-                        throw new NullReferenceException("Tweet is null");
+                        throw new NullReferenceException("User not allowed to see Tweet - please follow user to see!");
                     }
                 }
                 catch (Exception e)
                 {
-                    throw new NullReferenceException("List of Followed users is null. Exception: " + e.Message);
+                    throw new NullReferenceException("Tweet single throw error. Exception: " + e.Message);
                 }
             }
         }
-    }
+
+        public IList<string> GetAllFollowedUsers(string userName)
+        {
+
+            using (var context = new TwitterContext())
+            {
+                var user = context.Users.SingleOrDefault(u => u.UserName == userName);
+                
+                var sql_followedUsers = @"Select [FollowedUserId] from [UserFollowsUser] 
+                                                Where [UserFollowsUser].[FollowedByUserId] = {0}";
+                var usersFollowingId = context.Database
+                    .SqlQuery<string>(sql_followedUsers, user.Id).ToList();
+
+                usersFollowingId.Add(user.Id);
+
+                return usersFollowingId;
+            }
+            
+        }
+}
 }

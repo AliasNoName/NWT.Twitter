@@ -60,8 +60,8 @@ namespace NWT.Twitter.WebApi.DAL
                 .HasMany(user => user.FollowedUsers)
                 .WithMany(followedUsers => followedUsers.FollowedByUsers)
                 .Map(userFollowers => userFollowers
-                    .MapLeftKey("FollowedUserId")
-                    .MapRightKey("UserId")
+                    .MapLeftKey("FollowedByUserId")
+                    .MapRightKey("FollowedUserId")
                     .ToTable("UserFollowsUser"));
 
         }
