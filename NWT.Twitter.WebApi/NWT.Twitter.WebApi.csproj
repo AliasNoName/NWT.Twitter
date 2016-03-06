@@ -156,6 +156,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
+    <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Controllers\TweetsController.cs" />
     <Compile Include="DAL\TwitterContext.cs" />
     <Compile Include="DAL\TwitterInitializer.cs" />

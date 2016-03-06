@@ -14,7 +14,7 @@ namespace NWT.Twitter.WebApi.DAL
         public TwitterContext() : base("TwitterContext")
         {
             Configuration.ProxyCreationEnabled = false;
-            Configuration.LazyLoadingEnabled = true;
+            Configuration.LazyLoadingEnabled = false;
         }
 
         public DbSet<Location> Locations { get; set; }
