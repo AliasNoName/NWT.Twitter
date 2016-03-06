@@ -63,20 +63,14 @@ namespace NWT.Twitter.WebApi.Controllers
         }
 
         /*
-        [Authorize]
         // POST: api/Tweets
         [ResponseType(typeof(Tweet))]
         public IHttpActionResult PostTweet(Tweet tweet)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            
+        {            
             try
             {
                 ClaimsPrincipal principal = Request.GetRequestContext().Principal as ClaimsPrincipal;
-                var userId = principal.Identity.GetUserId();
+                var userName = principal.Claims.First().Value;
                 tweet.UserID = userId;
             }
             catch (NullReferenceException exception)
