@@ -1,0 +1,30 @@
+<nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav" id="main-navbar-menu">
+                    <li class="main-navbar-menu-item"> <a [routerLink]="['Index']"> <h4>Home  <span class="glyphicon glyphicon-home"></span></h4> </a></li>
+                    <li class="main-navbar-menu-item"> <a [routerLink]="['Profile', {nickname: twitterService.currentUser.nickname}]"><h4>Profile   <span class="glyphicon glyphicon-user" ></span></h4></a></li>
+                    <li class="main-navbar-menu-item"> <a [routerLink]="['Favourites']"><h4>Favourites   <span class="glyphicon glyphicon-star"></span></h4></a></li>
+                    <li class="main-navbar-menu-item"> <a [routerLink]="['Following']"><h4>Following   <span class="glyphicon glyphicon-heart" ></span></h4></a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <span><a [routerLink]="['Profile', {nickname: twitterService.currentUser.nickname}]"><img src={{twitterService.currentUser.imageUrl}} class="user-image" alt="user picture" /></a></span>
+                    </li>
+                    <li class="main-navbar-menu-item" id="new-tweet"> <a [routerLink]="['Index']"> <h4 id="new-tweet-text">Tweet  <span class="glyphicon glyphicon-pencil"></span></h4> </a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+<div class="container body-content">
+    <router-outlet></router-outlet>
+</div>

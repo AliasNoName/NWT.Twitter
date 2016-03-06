@@ -1,0 +1,22 @@
+<div class="panel panel-default tweet">
+                <div class="panel-body">
+                <img src={{tweet.author.imageUrl}} class="tweet-user-image" alt="user picture" />
+                <div class="tweet-data">
+                    <a [routerLink]="['Profile', {nickname: tweet.author.nickname}]"> <label>{{tweet.author.getFullName()}}</label></a>  @{{tweet.author.nickname}} - {{tweet.publishTime|date}}
+                    <div class="tweet-text">{{tweet.data}}
+                       <span *ngFor="#hashtag of tweet.hashtags">
+                        <a [routerLink]="['Hashtag', {data: hashtag.data}]">   {{hashtag.data}}</a>
+                       </span>
+                    </div>
+                    <ul class="list-inline">
+                        <li><a (click)="onShowComments()"><i class="glyphicon glyphicon-arrow-left"></i>Reply   </a></li>
+                        <li><a *ngIf="!favourited" (click)="onPutFavourited()"><i class="glyphicon glyphicon-star-empty"></i>Favourite   </a>
+                            <a *ngIf="favourited" (click)="onRemoveFavourited()"><i class="glyphicon glyphicon-star"></i>Favourited   </a></li>  
+                    </ul>
+                </div>
+                <div *ngIf="areCommentsShown" class="panel panel-default comment-list">
+                        <comments-list [comments]="tweet.comments"> Loading Comments... </comments-list>
+                        <new-comment [currentUser]="currentUser" (publish)="onNewCommentPublish($event)">Loading new comment form</new-comment>
+                </div>
+            </div>
+</div>

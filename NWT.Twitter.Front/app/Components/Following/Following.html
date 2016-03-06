@@ -1,0 +1,16 @@
+<main>
+    <aside id="user-panel-container">
+        <user-info [user] = "twitterService.currentUser" >Loading user info..</user-info>
+        <search (searchData)="onSearchKeyUpdate($event)">Loading search bar..</search>
+        <br/>
+        <!--<trends [hashtags]="hashtags">Loading list..</trends>!-->
+    </aside>
+
+    <div id="main-content-container" class="panel">
+        <users-following-list [users]="twitterService.currentUser.following|containsuser:searchKey" isFollowing = "true" (unfollowed)="onUnFollow($event)">Loading users you followed..</users-following-list>
+        <hr/>
+        <users-following-list [users]="notFollowing|containsuser:searchKey" (followed)="onFollow($event)">Loading other users..</users-following-list>    
+    </div>
+
+
+</main>

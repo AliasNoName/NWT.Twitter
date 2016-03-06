@@ -1,0 +1,15 @@
+<div class="well new-tweet-window">
+            <form class="form-horizontal" role="form">
+                <div class="form-group" style="padding:14px;">
+                    <img src={{currentUser.imageUrl}} class="user-image img-from-new-tweet-window" alt="user picture" />
+                    <input class="form-control input-from-new-tweet-window" placeholder="What's happening?" #input (keyup)="newTweetUpdate(input)">
+                </div>
+                <button class="btn btn-success pull-right" type="button" (click)="onPublish(input)">Post</button>
+                <span class="pull-right number-from-new-tweet-window">{{numberOfSymbols}}</span>
+                <ul class="list-inline new-tweet-list">
+                    <li><a><i class="glyphicon glyphicon-facetime-video"></i>  Media</a></li>
+                    <li><a><i class="glyphicon glyphicon-map-marker"></i>  Location</a></li>
+                    <li><a><i class="glyphicon glyphicon-adjust"></i> Poll</a></li>
+                </ul>
+            </form>
+        </div>

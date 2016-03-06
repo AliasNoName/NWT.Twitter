@@ -1,0 +1,1 @@
+{"version":3,"file":"ProfileBox.js","sourceRoot":"","sources":["ProfileBox.ts"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;YAeA;gBAAA;gBAGA,CAAC;gBAVD;oBAAC,gBAAS,CAAC;wBACP,QAAQ,EAAE,aAAa;wBACvB,UAAU,EAAE,CAAC,0BAAiB,EAAE,wBAAe,CAAC;wBAChD,MAAM,EAAE,CAAC,MAAM,EAAE,mBAAmB,CAAC;wBACrC,WAAW,EAAE,6CAA6C;qBAC7D,CAAC;;8BAAA;gBAKF,iBAAC;YAAD,CAAC,AAHD,IAGC;YAHD,mCAGC,CAAA"}

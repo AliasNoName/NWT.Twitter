@@ -1,29 +1,47 @@
 <html>
-  <head>
-    <title>Crvkutalo</title>
-    <!-- 1. Load libraries -->
-    <!-- IE required polyfills, in this exact order -->
-    <script src="node_modules/es6-shim/es6-shim.min.js"></script>
-    <script src="node_modules/systemjs/dist/system-polyfills.js"></script>
-    <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
-    <script src="node_modules/systemjs/dist/system.src.js"></script>
-    <script src="node_modules/rxjs/bundles/Rx.js"></script>
-    <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
-    <!-- 2. Configure SystemJS -->
-    <script>
-      System.config({
-        packages: {        
-          app: {
-            format: 'register',
-            defaultExtension: 'js'
-          }
-        }
-      });
-      System.import('app/app')
-            .then(null, console.error.bind(console));
-    </script>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+        <title>Cvrkutalo</title>
+        
+        <base href="/">
+        
+        <link href="/Content/bootstrap.css" rel="stylesheet">
+        <link href="/Content/site.css" rel="stylesheet">
+        <script src="/Scripts/modernizr-2.6.2.js"></script>
+        <style type="text/css"></style>
+        <script src="/Scripts/jquery-1.10.2.js"></script>
+        <script src="/Scripts/bootstrap.js"></script>
+        <script src="/Scripts/respond.js"></script>
+        
+        
+        <!-- IE required polyfills, in this exact order -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.33.3/es6-shim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.19.16/system-polyfills.js"></script>
+
+        <script src="https://code.angularjs.org/2.0.0-beta.2/angular2-polyfills.js"></script>
+        <script src="https://code.angularjs.org/tools/system.js"></script>
+        <script src="https://code.angularjs.org/tools/typescript.js"></script>
+        <script src="https://code.angularjs.org/2.0.0-beta.2/Rx.js"></script>
+        <script src="https://code.angularjs.org/2.0.0-beta.2/angular2.dev.js"></script>
+        
+        <script src="node_modules/angular2/bundles/router.dev.js"></script>
+        
+        <script src="https://code.angularjs.org/2.0.0-beta.0/http.dev.js"></script>
+
+        
+        <script>
+          System.config({
+            transpiler: 'typescript', 
+            typescriptOptions: { emitDecoratorMetadata: true }, 
+            packages: {'app': {defaultExtension: 'ts'}} 
+          });
+          System.import('app/main')
+                .then(null, console.error.bind(console));
+        </script>
+
   </head>
-  <!-- 3. Display the application -->
+
   <body>
     <twitter-app>Loading...</twitter-app>
   </body>

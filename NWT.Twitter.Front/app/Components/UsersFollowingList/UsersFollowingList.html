@@ -1,0 +1,8 @@
+<div>
+        <h3 *ngIf="isFollowing">Users you followed</h3>
+        <h3 *ngIf="!isFollowing">Other users</h3>
+        <br/>
+        <div *ngFor="#user of users">
+                <user-following [isFollowing] = "isFollowing" [user]="user" (followed)="onFollow($event)" (unfollowed)="onUnFollow($event)"></user-following>
+        </div>
+</div>
