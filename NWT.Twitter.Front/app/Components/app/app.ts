@@ -8,6 +8,7 @@ import {Index} from  '../Index/Index';
 import {Favourites} from  '../Favourites/Favourites';
 import {Hashtag} from  '../Hashtag/Hashtag';
 import {EditProfile} from  '../EditProfile/EditProfile';
+import {Login} from '../Login/Login';
 
 import {TweetsList} from "../TweetList/TweetsList"
 import {Trends} from "../Trends/Trends"
@@ -33,13 +34,14 @@ export class App {
         this.twitterService = twitterService;
  
     router_.config([
-                { path: '/home', component: Index, name: 'Index', data: {twitterService: this.twitterService} },
-                { path: '/profile/:nickname', component: Profile, name: 'Profile', data: {twitterService: this.twitterService} },
-                { path: '/following', component: Following, name: 'Following', data: {twitterService: this.twitterService}},
-                { path: '/favourites', component: Favourites, name: 'Favourites', data: {twitterService: this.twitterService}},
-                { path: '/hashtag/:data', component: Hashtag, name: 'Hashtag', data: {twitterService: this.twitterService} }, 
-                { path: '/editprofile', component: EditProfile, name: 'EditProfile', data: {twitterService: this.twitterService} },
-                { path: '/', redirectTo: ['Index']}
-        ])
+        {path: '/login', component: Login},
+        { path: '/home', component: Index, name: 'Index', data: {twitterService: this.twitterService} },
+        { path: '/profile/:nickname', component: Profile, name: 'Profile', data: {twitterService: this.twitterService} },
+        { path: '/following', component: Following, name: 'Following', data: {twitterService: this.twitterService}},
+        { path: '/favourites', component: Favourites, name: 'Favourites', data: {twitterService: this.twitterService}},
+        { path: '/hashtag/:data', component: Hashtag, name: 'Hashtag', data: {twitterService: this.twitterService} }, 
+        { path: '/editprofile', component: EditProfile, name: 'EditProfile', data: {twitterService: this.twitterService} },
+        { path: '/', redirectTo: ['Index']}
+    ])
     }
 }

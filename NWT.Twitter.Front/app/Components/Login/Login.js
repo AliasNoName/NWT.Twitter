@@ -1,4 +1,4 @@
-System.register(["angular2/core", "angular2/common", 'angular2/router'], function(exports_1, context_1) {
+System.register(["angular2/core", "angular2/router", "../../Services/TwitterService"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,36 +10,40 @@ System.register(["angular2/core", "angular2/common", 'angular2/router'], functio
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, common_1, router_1;
-    var Comment;
+    var core_1, router_1, TwitterService_1;
+    var Login;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (common_1_1) {
-                common_1 = common_1_1;
-            },
             function (router_1_1) {
                 router_1 = router_1_1;
+            },
+            function (TwitterService_1_1) {
+                TwitterService_1 = TwitterService_1_1;
             }],
         execute: function() {
-            Comment = (function () {
-                function Comment() {
+            Login = (function () {
+                function Login(_router, _service) {
+                    this.router = _router;
+                    this.service = _service;
                 }
-                Comment = __decorate([
+                Login.prototype.login = function (userName, password) {
+                    this.router.navigate(['Index']);
+                };
+                Login = __decorate([
                     core_1.Component({
-                        selector: "comment",
-                        inputs: ["comment"],
-                        directives: [common_1.CORE_DIRECTIVES, router_1.ROUTER_DIRECTIVES],
-                        templateUrl: "./app/Components/Comment/Comment.html"
+                        selector: "login",
+                        providers: [TwitterService_1.TwitterService],
+                        templateUrl: "./app/Components/Login/Login.html"
                     }), 
-                    __metadata('design:paramtypes', [])
-                ], Comment);
-                return Comment;
+                    __metadata('design:paramtypes', [router_1.Router, TwitterService_1.TwitterService])
+                ], Login);
+                return Login;
             }());
-            exports_1("Comment", Comment);
+            exports_1("Login", Login);
         }
     }
 });
-//# sourceMappingURL=Comment.js.map
+//# sourceMappingURL=Login.js.map
