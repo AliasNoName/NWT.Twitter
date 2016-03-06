@@ -1,4 +1,6 @@
-System.register(['angular2/core', 'angular2/router', '../profile/profile', '../Following/Following', '../Index/Index', '../Favourites/Favourites', '../Hashtag/Hashtag', '../EditProfile/EditProfile', "../../Services/TwitterService"], function(exports_1) {
+System.register(['angular2/core', 'angular2/router', '../profile/profile', '../Following/Following', '../Index/Index', '../Favourites/Favourites', '../Hashtag/Hashtag', '../EditProfile/EditProfile', '../Login/Login', "../../Services/TwitterService"], function(exports_1, context_1) {
+    "use strict";
+    var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', '../profile/profile', '../F
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, router_2, profile_1, Following_1, Index_1, Favourites_1, Hashtag_1, EditProfile_1, TwitterService_1;
+    var core_1, router_1, router_2, profile_1, Following_1, Index_1, Favourites_1, Hashtag_1, EditProfile_1, Login_1, TwitterService_1;
     var App;
     return {
         setters:[
@@ -37,6 +39,9 @@ System.register(['angular2/core', 'angular2/router', '../profile/profile', '../F
             function (EditProfile_1_1) {
                 EditProfile_1 = EditProfile_1_1;
             },
+            function (Login_1_1) {
+                Login_1 = Login_1_1;
+            },
             function (TwitterService_1_1) {
                 TwitterService_1 = TwitterService_1_1;
             }],
@@ -46,6 +51,7 @@ System.register(['angular2/core', 'angular2/router', '../profile/profile', '../F
                     this.router_ = router_;
                     this.twitterService = twitterService;
                     router_.config([
+                        { path: '/login', component: Login_1.Login },
                         { path: '/home', component: Index_1.Index, name: 'Index', data: { twitterService: this.twitterService } },
                         { path: '/profile/:nickname', component: profile_1.Profile, name: 'Profile', data: { twitterService: this.twitterService } },
                         { path: '/following', component: Following_1.Following, name: 'Following', data: { twitterService: this.twitterService } },
@@ -65,7 +71,7 @@ System.register(['angular2/core', 'angular2/router', '../profile/profile', '../F
                     __metadata('design:paramtypes', [TwitterService_1.TwitterService, router_1.Router])
                 ], App);
                 return App;
-            })();
+            }());
             exports_1("App", App);
         }
     }
