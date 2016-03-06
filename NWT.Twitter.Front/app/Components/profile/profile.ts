@@ -3,6 +3,7 @@ import {CORE_DIRECTIVES} from "angular2/common"
 import {RouteData, RouteParams} from 'angular2/router';
 
 import {User as UserModel} from "../../Model/User"
+import {Tweet as TweetModel} from "../../Model/Tweet"
 
 import {TweetsList} from "../TweetList/TweetsList"
 import {Trends} from "../Trends/Trends"
