@@ -6,10 +6,12 @@ System.register([], function(exports_1, context_1) {
         setters:[],
         execute: function() {
             User = (function () {
-                function User(name, lastname, nickname, email, password, imageUrl, tweets, following, favourites) {
+                function User(name, lastname, nickname, email, password, imageUrl, tweets, following, favourites, ID) {
                     if (tweets === void 0) { tweets = []; }
                     if (following === void 0) { following = []; }
                     if (favourites === void 0) { favourites = []; }
+                    if (ID === void 0) { ID = Math.random(); }
+                    this.ID = ID;
                     this.name = name;
                     this.lastname = lastname;
                     this.nickname = nickname;

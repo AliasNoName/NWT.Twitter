@@ -6,7 +6,9 @@ System.register([], function(exports_1, context_1) {
         setters:[],
         execute: function() {
             Comment = (function () {
-                function Comment(author, data) {
+                function Comment(author, data, ID) {
+                    if (ID === void 0) { ID = Math.random(); }
+                    this.ID = ID;
                     this.author = author;
                     this.data = data;
                 }

@@ -216,6 +216,8 @@
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Controllers\MasterHashtagsController.cs" />
+    <Compile Include="Controllers\MasterTweetsController.cs" />
+    <Compile Include="Controllers\MasterUsersController.cs" />
     <Compile Include="Controllers\TweetsController.cs" />
     <Compile Include="DAL\TwitterContext.cs" />
     <Compile Include="DAL\TwitterInitializer.cs" />
@@ -253,7 +255,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Mappers\" />
-    <Folder Include="Views\MasterHashtags\" />
+    <Folder Include="Views\MasterTweets\" />
+    <Folder Include="Views\MasterUsers\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

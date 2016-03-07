@@ -1,6 +1,7 @@
 ﻿import {Tweet} from "./Tweet"
 
 export class User {
+    public ID:number;
     public name: string;
     public lastname: string;
     public nickname: string;
@@ -11,7 +12,8 @@ export class User {
     public favourites: Tweet[];
     public following: User[];
 
-    constructor(name: string, lastname: string, nickname: string, email: string, password:string, imageUrl: string, tweets: Tweet[] = [], following: User[] = [], favourites: Tweet[] = []) {
+    constructor(name: string, lastname: string, nickname: string, email: string, password:string, imageUrl: string, tweets: Tweet[] = [], following: User[] = [], favourites: Tweet[] = [], ID:number = Math.random()) {
+        this.ID = ID;
         this.name = name;
         this.lastname = lastname;
         this.nickname = nickname;

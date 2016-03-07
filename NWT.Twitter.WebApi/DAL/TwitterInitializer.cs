@@ -65,7 +65,8 @@ namespace NWT.Twitter.WebApi.DAL
 
             var hashtags = new List<Hashtag>
             {
-                new Hashtag { Text = "hashtagRijec", Tweets = new List<Tweet>(context.Tweets.Where(t => t.Text.Contains("#hastagRijec")) ) }
+                new Hashtag { Text = "hashtagRijec", Tweets = new List<Tweet>(context.Tweets.Where(t => t.Text.Contains("#hastagRijec")) ) },
+                new Hashtag { Text = "hashtagRijec2", Tweets = new List<Tweet>(context.Tweets.Where(t => t.Text.Contains("#hastagRijec2")) ) }
             };
             hashtags.ForEach(h => context.Hashtags.Add(h));
             context.SaveChanges();
