@@ -15,6 +15,8 @@ export class TwitterService {
      public users: UserModel[];
      public currentUser: UserModel;
      
+     public loggedIn: boolean;
+     
      constructor(http: Http){
         this.hashtags = [];
         this.users = [];
@@ -27,28 +29,25 @@ export class TwitterService {
         this.fetchCurrentUser();
         
         this.users.forEach(user => user.tweets = this.tweets.filter(tweet => tweet.author == user));
-    }
-    
-    /*
-    TODO:
-    private fetchTodos(){
-        let request = this.http.request("/api/TodoItems");
         
-        request.subscribe((response: Response) => {
-            this.todos = response.json().map(todo => new TodoItem(todo.Value, todo.Done, todo.ID))
-        }, (error) => alert("Error: " + JSON.stringify(error)));
+        this.loggedIn = false;
     }
-    */
     
     private fetchHashtags(){
-        this.hashtags = [
-            new HashtagModel("#hashtag_trend1"),
-            new HashtagModel("#hashtag_trend2"),
-            new HashtagModel("#hashtag_trend3"),
-            new HashtagModel("#hashtag_trend4"),
-            new HashtagModel("#hashtag_trend5"),
-            new HashtagModel("#hashtag_trend6"),
-        ];
+        this.hashtags = [];
+        /*let request = this.http.request("http://localhost:19964/api/Master/Hashtags/Database");
+        
+        request.subscribe((response: Response) => {
+            this.hashtags = response.json().map(hashtag => new HashtagModel(hashtag.data))
+        }, (error) => alert("Error: " + JSON.stringify(error)));
+        */
+        this.hashtags.push(new HashtagModel("#hashtag_trend1"));
+        this.hashtags.push(new HashtagModel("#hashtag_trend2"));
+        this.hashtags.push(new HashtagModel("#hashtag_trend3"));
+        this.hashtags.push(new HashtagModel("#hashtag_trend4"));
+        this.hashtags.push(new HashtagModel("#hashtag_trend5"));
+        this.hashtags.push(new HashtagModel("#hashtag_trend6"));
+        
     }
     
     private fetchUsers(){
@@ -123,7 +122,27 @@ export class TwitterService {
     }
     
     public onUserDataChange(newData: UserModel){
+        var index = this.users.indexOf(this.currentUser);
         this.currentUser = new UserModel(newData.name, newData.lastname, newData.nickname, newData.email, newData.password, newData.imageUrl, newData.tweets, newData.following, newData.favourites);
+        this.users[index] = this.currentUser;
+        console.log(this.users);
+    }
+    
+    public onLogin(userName:string, password:string):number{
+        var loginAtemptUser: UserModel;
+        
+        //0-OK, 1-Not Sumbited, 2-Wrong User, 3-Wrong password
+        loginAtemptUser = this.users.find(user=>user.nickname==userName);
+        if(loginAtemptUser == null)
+            return 2;
+        else if(loginAtemptUser.password != password)
+            return 3;
+         else
+         {
+             this.loggedIn = true;
+             this.currentUser = loginAtemptUser;
+            return 0;
+         }
     }
     
 }

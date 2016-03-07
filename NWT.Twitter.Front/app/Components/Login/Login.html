@@ -1,10 +1,15 @@
  <form (submit)="login(username.value, password.value)">
+     
+     <div *ngIf="errorOccured" class="alert alert-info alert-dismissable">
+                  <a class="panel-close close" data-dismiss="alert">×</a>
+                  <label style="color:red"> {{errorText}} </label>
+      </div>
    
-   <label for="username">Username</label>
+   <label for="username">Nickname</label>
    <input type="text" #username class="form-control" id="username" placeholder="Username">
    
    <label for="password">Password</label>
    <input type="password" #password class="form-control" id="password" placeholder="Password">
-
-   <button type="submit">Submit</button>
+   <br/>
+   <button class="btn btn-primary" type="submit">Submit</button>
  </form>

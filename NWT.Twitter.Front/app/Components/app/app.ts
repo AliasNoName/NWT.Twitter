@@ -1,6 +1,7 @@
 import {Component} from 'angular2/core';
 import {RouteData, Router} from 'angular2/router';
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
+import {CORE_DIRECTIVES} from "angular2/common"
 
 import {Profile} from  '../profile/profile';
 import {Following} from  '../Following/Following';
@@ -22,7 +23,7 @@ import {ContainsPipe} from "../../Pipes/ContainsPipe"
 
 @Component({
     selector: 'twitter-app',
-    directives: [ROUTER_DIRECTIVES],
+    directives: [ROUTER_DIRECTIVES, CORE_DIRECTIVES],
     providers: [TwitterService],
     templateUrl:"./app/Components/app/app.html"
 })
@@ -34,14 +35,14 @@ export class App {
         this.twitterService = twitterService;
  
     router_.config([
-        {path: '/login', component: Login},
+        {path: '/login', component: Login, name: 'Login', data: {twitterService: this.twitterService}},
         { path: '/home', component: Index, name: 'Index', data: {twitterService: this.twitterService} },
         { path: '/profile/:nickname', component: Profile, name: 'Profile', data: {twitterService: this.twitterService} },
         { path: '/following', component: Following, name: 'Following', data: {twitterService: this.twitterService}},
         { path: '/favourites', component: Favourites, name: 'Favourites', data: {twitterService: this.twitterService}},
         { path: '/hashtag/:data', component: Hashtag, name: 'Hashtag', data: {twitterService: this.twitterService} }, 
         { path: '/editprofile', component: EditProfile, name: 'EditProfile', data: {twitterService: this.twitterService} },
-        { path: '/', redirectTo: ['Index']}
+        { path: '/', redirectTo: ['Login']}
     ])
     }
 }

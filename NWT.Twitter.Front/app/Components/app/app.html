@@ -16,7 +16,10 @@
                     <li class="main-navbar-menu-item"> <a [routerLink]="['Following']"><h4>Following   <span class="glyphicon glyphicon-heart" ></span></h4></a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
+                    <li style="border-left:none;" class="main-navbar-menu-item" *ngIf="twitterService.loggedIn">
+                        <a [routerLink]="['Login']"><h4>Logout</h4></a>
+                    </li>
+                    <li *ngIf="twitterService.loggedIn">
                         <span><a [routerLink]="['Profile', {nickname: twitterService.currentUser.nickname}]"><img src={{twitterService.currentUser.imageUrl}} class="user-image" alt="user picture" /></a></span>
                     </li>
                     <li class="main-navbar-menu-item" id="new-tweet"> <a [routerLink]="['Index']"> <h4 id="new-tweet-text">Tweet  <span class="glyphicon glyphicon-pencil"></span></h4> </a></li>

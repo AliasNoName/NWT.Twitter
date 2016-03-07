@@ -1,5 +1,5 @@
 import {Component} from "angular2/core"
-import {Router, RouteData, RouterLink} from "angular2/router"
+import {Router, RouteData} from "angular2/router"
 
 import {TwitterService} from "../../Services/TwitterService"
 
@@ -16,15 +16,41 @@ export class Login {
     public userName: string;
     public password: string;
     public confirmPassword: string;
-    private router: Router;
     private service: TwitterService;
+    private router: Router;
     
-    constructor(_router:Router, _service:TwitterService){
+    private errorStatusCode:number; //0-OK, 1-Not Sumbited, 2-Wrong User, 3-Wrong password
+    public errorOccured: boolean;
+    public errorText: string;
+    
+    constructor(_router:Router, data: RouteData)
+    {
         this.router = _router;
-        this.service = _service;
+        this.twitterService = data.get('twitterService');
+        this.errorOccured = false;
+        this.errorText = "";
+        this.errorStatusCode = 1;
     }
     
     private login(userName:string, password:string): void{
-        this.router.navigate(['Index']);     
+          this.errorStatusCode = this.twitterService.onLogin(userName, password);
+          if(this.errorStatusCode==0)
+          {
+              setTimeout(()=>{
+                this.router.navigate(['Index']);
+                }, 100);
+                this.errorOccured = false;
+          }
+          else{ 
+            this.errorOccured = true;
+            if(this.errorStatusCode==2)
+            {
+              this.errorText = "Wrong Nickname!"
+            }
+            else if(this.errorStatusCode==3)
+            {
+              this.errorText = "Wrong Password!"
+            }
+          }
     }
 }

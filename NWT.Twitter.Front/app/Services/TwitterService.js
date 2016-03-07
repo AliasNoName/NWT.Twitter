@@ -45,26 +45,22 @@ System.register(['angular2/http', 'angular2/core', "./../Model/Hashtag", "./../M
                     this.fetchTweets();
                     this.fetchCurrentUser();
                     this.users.forEach(function (user) { return user.tweets = _this.tweets.filter(function (tweet) { return tweet.author == user; }); });
+                    this.loggedIn = false;
                 }
-                /*
-                TODO:
-                private fetchTodos(){
-                    let request = this.http.request("/api/TodoItems");
+                TwitterService.prototype.fetchHashtags = function () {
+                    this.hashtags = [];
+                    /*let request = this.http.request("http://localhost:19964/api/Master/Hashtags/Database");
                     
                     request.subscribe((response: Response) => {
-                        this.todos = response.json().map(todo => new TodoItem(todo.Value, todo.Done, todo.ID))
+                        this.hashtags = response.json().map(hashtag => new HashtagModel(hashtag.data))
                     }, (error) => alert("Error: " + JSON.stringify(error)));
-                }
-                */
-                TwitterService.prototype.fetchHashtags = function () {
-                    this.hashtags = [
-                        new Hashtag_1.Hashtag("#hashtag_trend1"),
-                        new Hashtag_1.Hashtag("#hashtag_trend2"),
-                        new Hashtag_1.Hashtag("#hashtag_trend3"),
-                        new Hashtag_1.Hashtag("#hashtag_trend4"),
-                        new Hashtag_1.Hashtag("#hashtag_trend5"),
-                        new Hashtag_1.Hashtag("#hashtag_trend6"),
-                    ];
+                    */
+                    this.hashtags.push(new Hashtag_1.Hashtag("#hashtag_trend1"));
+                    this.hashtags.push(new Hashtag_1.Hashtag("#hashtag_trend2"));
+                    this.hashtags.push(new Hashtag_1.Hashtag("#hashtag_trend3"));
+                    this.hashtags.push(new Hashtag_1.Hashtag("#hashtag_trend4"));
+                    this.hashtags.push(new Hashtag_1.Hashtag("#hashtag_trend5"));
+                    this.hashtags.push(new Hashtag_1.Hashtag("#hashtag_trend6"));
                 };
                 TwitterService.prototype.fetchUsers = function () {
                     this.users = [
@@ -124,7 +120,24 @@ System.register(['angular2/http', 'angular2/core', "./../Model/Hashtag", "./../M
                     this.currentUser.imageUrl = URL.createObjectURL(inputValue.target.files[0]);
                 };
                 TwitterService.prototype.onUserDataChange = function (newData) {
+                    var index = this.users.indexOf(this.currentUser);
                     this.currentUser = new User_1.User(newData.name, newData.lastname, newData.nickname, newData.email, newData.password, newData.imageUrl, newData.tweets, newData.following, newData.favourites);
+                    this.users[index] = this.currentUser;
+                    console.log(this.users);
+                };
+                TwitterService.prototype.onLogin = function (userName, password) {
+                    var loginAtemptUser;
+                    //0-OK, 1-Not Sumbited, 2-Wrong User, 3-Wrong password
+                    loginAtemptUser = this.users.find(function (user) { return user.nickname == userName; });
+                    if (loginAtemptUser == null)
+                        return 2;
+                    else if (loginAtemptUser.password != password)
+                        return 3;
+                    else {
+                        this.loggedIn = true;
+                        this.currentUser = loginAtemptUser;
+                        return 0;
+                    }
                 };
                 TwitterService = __decorate([
                     core_1.Injectable(), 

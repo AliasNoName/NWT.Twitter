@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', '../profile/profile', '../Following/Following', '../Index/Index', '../Favourites/Favourites', '../Hashtag/Hashtag', '../EditProfile/EditProfile', '../Login/Login', "../../Services/TwitterService"], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', "angular2/common", '../profile/profile', '../Following/Following', '../Index/Index', '../Favourites/Favourites', '../Hashtag/Hashtag', '../EditProfile/EditProfile', '../Login/Login', "../../Services/TwitterService"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', '../profile/profile', '../F
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, router_2, profile_1, Following_1, Index_1, Favourites_1, Hashtag_1, EditProfile_1, Login_1, TwitterService_1;
+    var core_1, router_1, router_2, common_1, profile_1, Following_1, Index_1, Favourites_1, Hashtag_1, EditProfile_1, Login_1, TwitterService_1;
     var App;
     return {
         setters:[
@@ -20,6 +20,9 @@ System.register(['angular2/core', 'angular2/router', '../profile/profile', '../F
             function (router_1_1) {
                 router_1 = router_1_1;
                 router_2 = router_1_1;
+            },
+            function (common_1_1) {
+                common_1 = common_1_1;
             },
             function (profile_1_1) {
                 profile_1 = profile_1_1;
@@ -51,20 +54,20 @@ System.register(['angular2/core', 'angular2/router', '../profile/profile', '../F
                     this.router_ = router_;
                     this.twitterService = twitterService;
                     router_.config([
-                        { path: '/login', component: Login_1.Login },
+                        { path: '/login', component: Login_1.Login, name: 'Login', data: { twitterService: this.twitterService } },
                         { path: '/home', component: Index_1.Index, name: 'Index', data: { twitterService: this.twitterService } },
                         { path: '/profile/:nickname', component: profile_1.Profile, name: 'Profile', data: { twitterService: this.twitterService } },
                         { path: '/following', component: Following_1.Following, name: 'Following', data: { twitterService: this.twitterService } },
                         { path: '/favourites', component: Favourites_1.Favourites, name: 'Favourites', data: { twitterService: this.twitterService } },
                         { path: '/hashtag/:data', component: Hashtag_1.Hashtag, name: 'Hashtag', data: { twitterService: this.twitterService } },
                         { path: '/editprofile', component: EditProfile_1.EditProfile, name: 'EditProfile', data: { twitterService: this.twitterService } },
-                        { path: '/', redirectTo: ['Index'] }
+                        { path: '/', redirectTo: ['Login'] }
                     ]);
                 }
                 App = __decorate([
                     core_1.Component({
                         selector: 'twitter-app',
-                        directives: [router_2.ROUTER_DIRECTIVES],
+                        directives: [router_2.ROUTER_DIRECTIVES, common_1.CORE_DIRECTIVES],
                         providers: [TwitterService_1.TwitterService],
                         templateUrl: "./app/Components/app/app.html"
                     }), 

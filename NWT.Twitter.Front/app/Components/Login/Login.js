@@ -25,12 +25,31 @@ System.register(["angular2/core", "angular2/router", "../../Services/TwitterServ
             }],
         execute: function() {
             Login = (function () {
-                function Login(_router, _service) {
+                function Login(_router, data) {
                     this.router = _router;
-                    this.service = _service;
+                    this.twitterService = data.get('twitterService');
+                    this.errorOccured = false;
+                    this.errorText = "";
+                    this.errorStatusCode = 1;
                 }
                 Login.prototype.login = function (userName, password) {
-                    this.router.navigate(['Index']);
+                    var _this = this;
+                    this.errorStatusCode = this.twitterService.onLogin(userName, password);
+                    if (this.errorStatusCode == 0) {
+                        setTimeout(function () {
+                            _this.router.navigate(['Index']);
+                        }, 100);
+                        this.errorOccured = false;
+                    }
+                    else {
+                        this.errorOccured = true;
+                        if (this.errorStatusCode == 2) {
+                            this.errorText = "Wrong Nickname!";
+                        }
+                        else if (this.errorStatusCode == 3) {
+                            this.errorText = "Wrong Password!";
+                        }
+                    }
                 };
                 Login = __decorate([
                     core_1.Component({
@@ -38,7 +57,7 @@ System.register(["angular2/core", "angular2/router", "../../Services/TwitterServ
                         providers: [TwitterService_1.TwitterService],
                         templateUrl: "./app/Components/Login/Login.html"
                     }), 
-                    __metadata('design:paramtypes', [router_1.Router, TwitterService_1.TwitterService])
+                    __metadata('design:paramtypes', [router_1.Router, router_1.RouteData])
                 ], Login);
                 return Login;
             }());
